@@ -1,12 +1,17 @@
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+import HeaderBar from '../../viewComponents/HeaderBar';
+import ItemKeeps from '../../viewComponents/ItemKeeps';
+import Style from '../../viewComponents/Main.basic.style';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const HomeScreen = ({navigation}: any) => {
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <View>
+    <View style={Style.contrainer}>
       {/* eslint-disable-next-line react/react-in-jsx-scope */}
-      <Text>Aboba</Text>
+      <HeaderBar title={'NotesThis'} />
+      {/* eslint-disable-next-line react/react-in-jsx-scope */}
+      <ItemKeeps />
     </View>
   );
 };
