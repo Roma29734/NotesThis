@@ -6,6 +6,7 @@
 * ##### react-native-cli
 * ##### react-native-navigation
 * ##### axios
+* ##### sqlite
 
 You can follow the development of this project [here](https://t.me/apkPublicPrograms)
 

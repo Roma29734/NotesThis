@@ -1,14 +1,17 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS, FONT_FAMILY} from '../assets/Theme';
+import {ToDoItem} from '../data/model/ToDoItemModel';
+import React from 'react';
 
-const ItemKeeps = () => {
+const ItemKeeps: React.FC<{
+  todo: ToDoItem;
+}> = ({todo: {id}}) => {
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <View style={styles.MainContainerView}>
-      {/* eslint-disable-next-line react/react-in-jsx-scope */}
+      {}
       <Text style={styles.HeaderText}>
         This is Title from my notes in Notes This application. Это заголовок
-        моей заметки в приложении Notes This
+        моей заметки в приложении Notes This ${id}
       </Text>
       <Text style={styles.DateText}>28/11/2023</Text>
     </View>
@@ -36,6 +39,7 @@ const styles = StyleSheet.create({
   MainContainerView: {
     marginStart: 24,
     marginEnd: 24,
+    marginTop: 16,
     flexDirection: 'column',
     backgroundColor: COLORS.HoneydewContrast,
     borderRadius: 24,
