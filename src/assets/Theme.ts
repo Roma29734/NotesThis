@@ -18,6 +18,6 @@ interface FontFamily {
 }
 
 export const FONT_FAMILY: FontFamily = {
-  is_tok_web_bold: 'IstokWeb-Bold',
+  is_tok_web_bold: 'istokWeb-Bold.ttf',
   is_tok_web_regular: 'IstokWeb-Regular',
 };

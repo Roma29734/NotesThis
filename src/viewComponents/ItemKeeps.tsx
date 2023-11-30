@@ -5,15 +5,14 @@ import React from 'react';
 
 const ItemKeeps: React.FC<{
   todo: ToDoItem;
-}> = ({todo: {id}}) => {
+}> = ({todo: {id, value, createData}}) => {
   return (
     <View style={styles.MainContainerView}>
       {}
       <Text style={styles.HeaderText}>
-        This is Title from my notes in Notes This application. Это заголовок
-        моей заметки в приложении Notes This ${id}
+        {value}
       </Text>
-      <Text style={styles.DateText}>28/11/2023</Text>
+      <Text style={styles.DateText}>{createData}</Text>
     </View>
   );
 };

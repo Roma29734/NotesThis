@@ -16,7 +16,8 @@ export const getDBConnection = async () => {
 export const createTable = async (db: SQLiteDatabase) => {
   // create table if not exists
   const query = `CREATE TABLE IF NOT EXISTS ${tableName}(
-        value TEXT NOT NULL
+        value TEXT NOT NULL,
+        createData TEXT NOT NULL
     );`;
 
   await db.executeSql(query);
@@ -26,7 +27,7 @@ export const getTodoItems = async (db: SQLiteDatabase): Promise<ToDoItem[]> => {
   try {
     const todoItems: ToDoItem[] = [];
     const results = await db.executeSql(
-      `SELECT rowid as id,value FROM ${tableName}`,
+      `SELECT rowid as id,value,createData FROM ${tableName}`,
     );
     results.forEach(result => {
       for (let index = 0; index < result.rows.length; index++) {
@@ -40,13 +41,15 @@ export const getTodoItems = async (db: SQLiteDatabase): Promise<ToDoItem[]> => {
   }
 };
 
+// old INSERT OR REPLACE INTO ${tableName}(rowid, value, createData) values
+// new INSERT INTO categories (name) VALUES (?)
 export const saveTodoItems = async (
   db: SQLiteDatabase,
   todoItems: ToDoItem[],
 ) => {
   const insertQuery =
-    `INSERT OR REPLACE INTO ${tableName}(rowid, value) values` +
-    todoItems.map(i => `(${i.id}, '${i.value}')`).join(',');
+    `INSERT OR REPLACE INTO ${tableName} (rowid, value, createData) values` +
+    todoItems.map(i => `('${i.id}', '{${i.value}', '${i.createData}')`).join(',');
 
   return db.executeSql(insertQuery);
 };
