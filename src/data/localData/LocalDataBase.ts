@@ -52,6 +52,11 @@ export const saveTodoItems = async (db: SQLiteDatabase, todoItems: ToDoItem[]) =
   return db.executeSql(insertQuery);
 };
 
+export const updateTodoItems = async (db: SQLiteDatabase, todoItems: ToDoItem[]) => {
+    const updateQuery = `UPDATE OR REPLACE ${tableName} SET ${todoItems}`;
+    await db.executeSql(updateQuery);
+}
+
 export const deleteTodoItem = async (db: SQLiteDatabase, id: number) => {
   const deleteQuery = `DELETE from ${tableName} where rowid = ${id}`;
   await db.executeSql(deleteQuery);

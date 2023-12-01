@@ -2,11 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { COLORS, FONT_FAMILY } from "../assets/Theme";
 import React from "react";
 import ImageBack from "./ImageBack";
+import ImageDelete from "./ImageDelete";
 
 // @ts-ignore
-const HeaderBarTitleButton = ({ title, BackHandler }) => {
+const HeaderBarTitleButton = ({ title, BackHandler, showDeleteItem, DeleteHandler }) => {
 
   // @ts-ignore
+
   return (
     <View style={styles.HeaderContainer}>
       <TouchableOpacity onPress={() => {
@@ -15,7 +17,14 @@ const HeaderBarTitleButton = ({ title, BackHandler }) => {
         <ImageBack visible={true} />
       </TouchableOpacity>
       <Text style={styles.HeaderText}>{title}</Text>
-      <ImageBack visible={false} />
+      {showDeleteItem == true &&
+        <TouchableOpacity onPress={() => {
+          DeleteHandler();
+          BackHandler();
+        }}>
+          <ImageDelete visible={true} />
+        </TouchableOpacity>}
+      {showDeleteItem == false && <ImageBack visible={false} />}
     </View>
   );
 };

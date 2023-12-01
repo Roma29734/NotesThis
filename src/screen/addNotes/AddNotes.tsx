@@ -42,7 +42,7 @@ const AddNotesScreen = ({ navigation }: any) => {
   return (
     <View style={Style.contrainer}>
 
-      <HeaderBarTitleButton title={"add Note"} BackHandler={BackHandler} />
+      <HeaderBarTitleButton title={"add Note"} BackHandler={BackHandler} showDeleteItem={false} DeleteHandler={false} />
 
       <TextInput style={Style.inputTitle}
                  placeholder="Enter your title notes"
@@ -70,4 +70,5 @@ const AddNotesScreen = ({ navigation }: any) => {
     </View>
   );
 };
+
 export default AddNotesScreen;

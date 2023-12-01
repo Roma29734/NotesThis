@@ -7,7 +7,6 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View
 } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
@@ -18,7 +17,6 @@ import { useIsFocused } from "@react-navigation/native";
 const LocalScreen = ({ navigation }: any) => {
   const [todos, setTodos] = useState<ToDoItem[]>([]);
   const isFocused = useIsFocused();
-
 
   useEffect(() => {
     loadDataCallback();
@@ -54,7 +52,7 @@ const LocalScreen = ({ navigation }: any) => {
         data={todos}
         style={styles.FlatListMain}
         renderItem={({ item }) =>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("DetailNotes", { transmittedTodoItem: item })}>
             <ItemKeeps todo={item} />
           </TouchableOpacity>
         }
@@ -87,8 +85,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.BlackMain
   },
   Image: {
-    height: 28,
-    width: "100%",
+    margin: 8,
+    flex: 1,
     alignItems: "center"
   },
   FlatListMain: {
