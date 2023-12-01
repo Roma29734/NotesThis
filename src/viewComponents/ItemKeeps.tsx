@@ -5,12 +5,12 @@ import React from 'react';
 
 const ItemKeeps: React.FC<{
   todo: ToDoItem;
-}> = ({todo: {id, value, createData}}) => {
+}> = ({todo: {id, valueTitle, createData}}) => {
   return (
     <View style={styles.MainContainerView}>
       {}
       <Text style={styles.HeaderText}>
-        {value}
+        {valueTitle}
       </Text>
       <Text style={styles.DateText}>{createData}</Text>
     </View>
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     marginStart: 24,
     marginEnd: 24,
     marginTop: 16,
+    marginBottom: 16,
     flexDirection: 'column',
     backgroundColor: COLORS.HoneydewContrast,
     borderRadius: 24,

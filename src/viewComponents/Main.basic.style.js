@@ -64,6 +64,26 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
   },
+  buttonCreate: {
+    width: 48,
+    height: 48,
+    position: 'absolute',
+    bottom: 150,
+    end: 16,
+    borderRadius: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.BlackMain,
+  },
+  Image: {
+    height: 28,
+    width: 28,
+    width: "100%",
+    alignItems: "center",
+  },
+  FlatListMain: {
+    height: height - 150
+  }
 });
 
 export default styles;

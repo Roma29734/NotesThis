@@ -1,35 +1,41 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ToDoItem } from "../../data/model/ToDoItemModel";
 import { createTable, getDBConnection, getTodoItems, saveTodoItems } from "../../data/localData/LocalDataBase";
-import { FlatList, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
-import Style from "../../viewComponents/Main.basic.style";
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View
+} from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
-import styles from "../../viewComponents/Main.basic.style";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
-
+import { COLORS } from "../../assets/Theme";
+import { useIsFocused } from "@react-navigation/native";
 
 const LocalScreen = ({ navigation }: any) => {
   const [todos, setTodos] = useState<ToDoItem[]>([]);
-  const [newTodo, setNewTodo] = useState("");
+  const isFocused = useIsFocused();
 
+
+  useEffect(() => {
+    loadDataCallback();
+  }, [isFocused]);
 
   const loadDataCallback = useCallback(async () => {
     try {
       const initTodos = [
-        { id: 0, value: "go to shop", createData: "29.11.2023" },
-        { id: 1, value: "eat at least a one healthy foods", createData: "29.11.2023" },
-        { id: 2, value: "Do some exercises", createData: "29.11.2023" },
-        { id: 3, value: "go to shop", createData: "29.11.2023" },
-        { id: 4, value: "eat at least a one healthy foods", createData: "29.11.2023" },
-        { id: 5, value: "Do some exercises", createData: "29.11.2023" },
-        { id: 6, value: "go to shop", createData: "29.11.2023" },
-        { id: 7, value: "eat at least a one healthy foods", createData: "29.11.2023" },
-        { id: 8, value: "Do some exercises", createData: "29.11.2023" }
+        { id: 0, valueTitle: "go to shop", createData: "29.11.2023", valueSubTitle: "" },
+        { id: 1, valueTitle: "eat at least a one healthy foods", createData: "29.11.2023", valueSubTitle: "" },
+        { id: 2, valueTitle: "Do some exercises", createData: "29.11.2023", valueSubTitle: "" }
       ];
       const db = await getDBConnection();
       await createTable(db);
       const storedTodoItems = await getTodoItems(db);
       if (storedTodoItems.length) {
+        console.log(storedTodoItems);
         setTodos(storedTodoItems);
       } else {
         await saveTodoItems(db, initTodos);
@@ -40,25 +46,54 @@ const LocalScreen = ({ navigation }: any) => {
       console.error(error);
     }
   }, []);
-  useEffect(() => {
-    loadDataCallback();
-  }, [loadDataCallback]);
 
   return (
-    <View style={Style.contrainer}>
+    <View>
       <HeaderBarSimpleTitle title={"NotesThis"} />
       <FlatList
         data={todos}
-        numColumns={1}
-        style={{height: '100%'}}
+        style={styles.FlatListMain}
         renderItem={({ item }) =>
-          <TouchableOpacity onPress={() => navigation.navigate("AddNotes")}>
+          <TouchableOpacity>
             <ItemKeeps todo={item} />
           </TouchableOpacity>
         }
       />
+      <TouchableOpacity style={styles.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
+        <Image
+          source={require("../../assets/image/ic_plus_white.png")}
+          style={styles.Image}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
+
+const { height, width } = Dimensions.get("window");
+const styles = StyleSheet.create({
+  contrainer: {
+    flex: 1,
+    backgroundColor: COLORS.WhiteMain
+  },
+  buttonCreate: {
+    width: 48,
+    height: 48,
+    position: "absolute",
+    bottom: 32,
+    end: 16,
+    borderRadius: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.BlackMain
+  },
+  Image: {
+    height: 28,
+    width: "100%",
+    alignItems: "center"
+  },
+  FlatListMain: {
+    height: height - 160
+  }
+});
 
 export default LocalScreen;

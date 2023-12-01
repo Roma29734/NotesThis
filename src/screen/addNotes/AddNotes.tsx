@@ -18,10 +18,10 @@ const AddNotesScreen = ({ navigation }: any) => {
     try {
       const db = await getDBConnection();
       const initTodos = [
-        { id: 0, value: textInputTitle, createData: "29.11.2023" },
+        { id: 6, valueTitle: textInputTitle, valueSubTitle: textInputSubTitle, createData: "29.11.2023" }
       ];
       await saveTodoItems(db, initTodos);
-      console.log('very good')
+      console.log("very good");
     } catch (error) {
       console.log(error);
     }
