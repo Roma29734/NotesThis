@@ -53,7 +53,8 @@ export const saveTodoItems = async (db: SQLiteDatabase, todoItems: ToDoItem[]) =
 };
 
 export const updateTodoItems = async (db: SQLiteDatabase, todoItems: ToDoItem[]) => {
-    const updateQuery = `UPDATE OR REPLACE ${tableName} SET ${todoItems}`;
+    const updateQuery = `UPDATE ${tableName} SET (valueTitle, valueSubTitle) WHERE id` +
+      todoItems.map(i => `('${i.valueTitle}', '${i.valueSubTitle}', '${i.id}')`).join(",");
     await db.executeSql(updateQuery);
 }
 
