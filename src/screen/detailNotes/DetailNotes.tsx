@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
-import { deleteTodoItem, getDBConnection, updateTodoItems } from "../../data/localData/LocalDataBase";
+import { deleteTodoItem, getDBConnection, updateTodoItem } from "../../data/localData/LocalDataBase";
 
 const DetailNotesScreen = ({ route, navigation }: any) => {
 
@@ -14,15 +14,15 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
   const updateTodo = async () => {
     try {
       const db = await getDBConnection();
-      const initTodos = [
+      const initTodos =
         {
           id: transmittedTodoItem.id,
           valueTitle: textInputTitle,
           valueSubTitle: textInputSubTitle,
           createData: "29.11.2023"
         }
-      ];
-      await updateTodoItems(db, initTodos);
+      ;
+      await updateTodoItem(db, transmittedTodoItem.id, initTodos);
       console.log("very good");
     } catch (error) {
       console.log(error);
