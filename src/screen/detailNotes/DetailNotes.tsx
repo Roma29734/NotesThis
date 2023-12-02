@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
@@ -10,6 +10,15 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
 
   const [textInputTitle, onChangeTextInputTitle] = useState(transmittedTodoItem.valueTitle);
   const [textInputSubTitle, onChangeTextInputSubTitle] = useState(transmittedTodoItem.valueSubTitle);
+  const [currentData, setCurrentData] = useState("");
+
+  useEffect(() => {
+    var date = new Date().getDate()
+    var month = new Date().getMonth() + 1
+    var year = new Date().getFullYear()
+    console.log(`date - ${date}.${month}.${year}`);
+    setCurrentData(`${date}.${month}.${year}`)
+  }, []);
 
   const updateTodo = async () => {
     try {
@@ -19,7 +28,7 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
           id: transmittedTodoItem.id,
           valueTitle: textInputTitle,
           valueSubTitle: textInputSubTitle,
-          createData: "29.11.2023"
+          createData: currentData
         }
       ;
       await updateTodoItem(db, transmittedTodoItem.id, initTodos);

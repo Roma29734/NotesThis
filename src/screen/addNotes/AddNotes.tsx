@@ -4,21 +4,30 @@ import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import { ToDoItem } from "../../data/model/ToDoItemModel";
 import { createTable, getDBConnection, getTodoItems, saveTodoItems } from "../../data/localData/LocalDataBase";
+import { DarkTheme } from "@react-navigation/native";
 
 const AddNotesScreen = ({ navigation }: any) => {
 
   const [textInputTitle, onChangeTextInputTitle] = useState("");
   const [textInputSubTitle, onChangeTextInputSubTitle] = useState("");
-
+  const [currentData, setCurrentData] = useState("");
   const BackHandler = () => {
     navigation.pop();
   };
+
+  useEffect(() => {
+    var date = new Date().getDate()
+    var month = new Date().getMonth() + 1
+    var year = new Date().getFullYear()
+    console.log(`date - ${date}.${month}.${year}`);
+    setCurrentData(`${date}.${month}.${year}`)
+  }, []);
 
   const addTodo = async () => {
     try {
       const db = await getDBConnection();
       const initTodos = [
-        { id: 6, valueTitle: textInputTitle, valueSubTitle: textInputSubTitle, createData: "29.11.2023" }
+        { id: 6, valueTitle: textInputTitle, valueSubTitle: textInputSubTitle, createData: currentData }
       ];
       await saveTodoItems(db, initTodos);
       console.log("very good");
