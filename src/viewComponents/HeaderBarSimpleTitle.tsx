@@ -15,7 +15,7 @@ const HeaderBarSimpleTitle = ({title}) => {
 
 const styles = StyleSheet.create({
   HeaderContainer: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: COLORS.BlackMain
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 16,
     marginBottom: 16,
+    marginStart: 24,
     justifyContent: 'center',
     color: COLORS.WhiteMain,
     fontFamily: FONT_FAMILY.is_tok_web_bold,

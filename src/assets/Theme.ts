@@ -3,13 +3,15 @@ interface Color {
   BlackMain: string;
   WhiteMain: string;
   GrayMain: string;
+  BlackBackground: string;
 }
 
 export const COLORS: Color = {
   HoneydewContrast: '#E4FFE6',
-  BlackMain: '#000000',
+  BlackMain: '#1F1E2E',
   WhiteMain: '#FFFFFF',
   GrayMain: '#494646',
+  BlackBackground: '#383745',
 };
 
 interface FontFamily {

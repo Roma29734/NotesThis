@@ -12,7 +12,7 @@ function App() {
   return (
     <View style={{ flex: 1 }}>
       <StatusBar
-        backgroundColor="#000000"
+        backgroundColor="#1F1E2E"
         barStyle="light-content"
       />
       <NavigationContainer>
@@ -23,7 +23,6 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </View>
-
   );
 }
 
