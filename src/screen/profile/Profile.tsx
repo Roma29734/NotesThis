@@ -1,14 +1,15 @@
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
-import React from "react";
+import React, { useRef } from "react";
 import { COLORS } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
+import { PortalProvider } from "@gorhom/portal";
+import BottomSheet from "../../viewComponents/BottomSheet";
 
 const ProfileScreen = ({ navigation }: any) => {
 
 
   const SetThemeTouchHandler = () => {
-
   };
   const ChangeLanguageTouchHandler = () => {
 
@@ -17,43 +18,60 @@ const ProfileScreen = ({ navigation }: any) => {
 
   };
 
-  return (
-    <SafeAreaView style={{ backgroundColor: COLORS.BlackBackground, flex: 1 }}>
-      <HeaderBarSimpleTitle title={"Profile"} />
-      <View style={styles.mainContainer}>
+  const modalRef = useRef(null);
 
-        <View style={styles.viewImageContainer}>
-          <View style={{
-            width: 110,
-            height: 110,
-            borderRadius: 600,
-            backgroundColor: COLORS.WhiteMain,
-            borderColor: COLORS.BlackMain,
-            borderWidth: 6
-          }}>
+  const onOpen = () => {
+    // @ts-ignore
+    modalRef.current?.open();
+  };
+
+  const onClose = () => {
+    // @ts-ignore
+    modalRef.current?.close();
+  };
+
+  return (
+    <PortalProvider>
+      <BottomSheet modalRef={modalRef} onClose={onClose} />
+      <SafeAreaView style={{ backgroundColor: COLORS.BlackBackground, flex: 1 }}>
+        <HeaderBarSimpleTitle title={"Profile"} />
+        <View style={styles.mainContainer}>
+
+          <View style={styles.viewImageContainer}>
+            <View style={{
+              width: 110,
+              height: 110,
+              borderRadius: 600,
+              backgroundColor: COLORS.WhiteMain,
+              borderColor: COLORS.BlackMain,
+              borderWidth: 6
+            }}>
+            </View>
+            <TouchableOpacity onPress={() => onOpen()}>
+            <Image
+                source={require("../../assets/image/ic_edit_profile.png")}
+                style={styles.imageEditProfile}
+              />
+            </TouchableOpacity>
           </View>
-          <Image
-            source={require("../../assets/image/ic_edit_profile.png")}
-            style={styles.imageEditProfile}
-          />
+
+          <Text style={styles.textName}>Your Name </Text>
         </View>
 
-        <Text style={styles.textName}>Your Name </Text>
-      </View>
+        <View style={styles.viewCardAppSettings}>
 
-      <View style={styles.viewCardAppSettings}>
+          <Text style={styles.textAppSettings}>App Settings</Text>
 
-        <Text style={styles.textAppSettings}>App Settings</Text>
+          <AppSettingsItems nameItem={'Set Theme'} locationImage={require("../../assets/image/ic_theme.png")} TouchHandler={SetThemeTouchHandler()} />
+          <AppSettingsItems nameItem={'Change Language'} locationImage={require("../../assets/image/ic_language.png")} TouchHandler={ChangeLanguageTouchHandler()}/>
+          <AppSettingsItems nameItem={'Out Account'} locationImage={require("../../assets/image/ic_exit_account.png")} TouchHandler={OutAccountTouchHandler()}/>
 
-        <AppSettingsItems nameItem={'Set Theme'} locationImage={require("../../assets/image/ic_theme.png")} TouchHandler={SetThemeTouchHandler()} />
-        <AppSettingsItems nameItem={'Change Language'} locationImage={require("../../assets/image/ic_language.png")} TouchHandler={ChangeLanguageTouchHandler()}/>
-        <AppSettingsItems nameItem={'Out Account'} locationImage={require("../../assets/image/ic_exit_account.png")} TouchHandler={OutAccountTouchHandler()}/>
-
-      </View>
-    </SafeAreaView>
+        </View>
+      </SafeAreaView>
+    </PortalProvider>
   );
 };
-
+2
 const { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
 
