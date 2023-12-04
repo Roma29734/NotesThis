@@ -1,3 +1,7 @@
+import {Appearance} from 'react-native';
+
+const colorScheme = Appearance.getColorScheme();
+
 interface Color {
   HoneydewContrast: string;
   BlackMain: string;
@@ -13,6 +17,8 @@ export const COLORS: Color = {
   GrayMain: '#494646',
   BlackBackground: '#383745',
 };
+
+
 
 interface FontFamily {
   is_tok_web_bold: string;

@@ -6,9 +6,8 @@ import AppSettingsItems from "../../viewComponents/AppSettingsItems";
 
 const ProfileScreen = ({ navigation }: any) => {
 
-
   const SetThemeTouchHandler = () => {
-
+    navigation.navigate("NameThemeSettings")
   };
   const ChangeLanguageTouchHandler = () => {
 
@@ -45,9 +44,9 @@ const ProfileScreen = ({ navigation }: any) => {
 
         <Text style={styles.textAppSettings}>App Settings</Text>
 
-        <AppSettingsItems nameItem={'Set Theme'} locationImage={require("../../assets/image/ic_theme.png")} TouchHandler={SetThemeTouchHandler()} />
-        <AppSettingsItems nameItem={'Change Language'} locationImage={require("../../assets/image/ic_language.png")} TouchHandler={ChangeLanguageTouchHandler()}/>
-        <AppSettingsItems nameItem={'Out Account'} locationImage={require("../../assets/image/ic_exit_account.png")} TouchHandler={OutAccountTouchHandler()}/>
+        <AppSettingsItems nameItem={'Set Theme'} locationImage={require("../../assets/image/ic_theme.png")} TouchHandler={SetThemeTouchHandler} />
+        <AppSettingsItems nameItem={'Change Language'} locationImage={require("../../assets/image/ic_language.png")} TouchHandler={ChangeLanguageTouchHandler}/>
+        <AppSettingsItems nameItem={'Out Account'} locationImage={require("../../assets/image/ic_exit_account.png")} TouchHandler={OutAccountTouchHandler}/>
 
       </View>
     </SafeAreaView>

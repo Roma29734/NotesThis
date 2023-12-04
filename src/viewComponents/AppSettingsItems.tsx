@@ -6,7 +6,7 @@ import React from "react";
 const AppSettingsItems = ({ nameItem, locationImage, TouchHandler } ) => {
   return (
     <TouchableOpacity style={styles.viewContainerAppSettings} onPress={() => {
-      // TouchHandler();
+      TouchHandler();
     }}>
 
       <View style={{ flexDirection: "row" }}>
