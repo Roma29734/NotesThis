@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   textAppSettingsIlustr: {
     fontSize: 16,
-    color: COLORS.BlackBackground,
+    color: COLORS.WhiteMain,
     alignSelf: "center",
     marginStart: 16
   },

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
-import { COLORS } from "../../assets/Theme";
+import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { useIsFocused } from "@react-navigation/native";
 
 const LocalScreen = ({ navigation }: any) => {
@@ -45,22 +45,25 @@ const LocalScreen = ({ navigation }: any) => {
     }
   }, []);
 
+  const colorTheme = useThemeColor()
+  const styleComponent = styles(colorTheme)
+
   return (
-    <View>
+    <View style={styleComponent.contrainer}>
       <HeaderBarSimpleTitle title={"NotesThis"} />
       <FlatList
         data={todos}
-        style={styles.FlatListMain}
+        style={styleComponent.FlatListMain}
         renderItem={({ item }) =>
           <TouchableOpacity onPress={() => navigation.navigate("DetailNotes", { transmittedTodoItem: item })}>
             <ItemKeeps todo={item} />
           </TouchableOpacity>
         }
       />
-      <TouchableOpacity style={styles.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
+      <TouchableOpacity style={styleComponent.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
         <Image
           source={require("../../assets/image/ic_plus_white.png")}
-          style={styles.Image}
+          style={styleComponent.Image}
         />
       </TouchableOpacity>
     </View>
@@ -68,10 +71,9 @@ const LocalScreen = ({ navigation }: any) => {
 };
 
 const { height, width } = Dimensions.get("window");
-const styles = StyleSheet.create({
+const styles = (color: UIColor) => StyleSheet.create({
   contrainer: {
-    flex: 1,
-    backgroundColor: COLORS.WhiteMain
+    backgroundColor: color.BackgroundMain
   },
   buttonCreate: {
     width: 48,

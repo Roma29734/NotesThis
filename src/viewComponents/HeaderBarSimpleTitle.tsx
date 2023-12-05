@@ -1,24 +1,26 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {COLORS, FONT_FAMILY} from '../assets/Theme';
+import { COLORS, FONT_FAMILY, UIColor, useThemeColor } from "../assets/Theme";
 import React from 'react';
 import ImageBack from "./ImageBack";
 
 // @ts-ignore
 
 const HeaderBarSimpleTitle = ({title}) => {
+  const colorTheme = useThemeColor()
+  const styleComponent = styles(colorTheme)
   return (
-    <View style={styles.HeaderContainer}>
-      <Text style={styles.HeaderText}>{title}</Text>
+    <View style={styleComponent.HeaderContainer}>
+      <Text style={styleComponent.HeaderText}>{title}</Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = (color: UIColor) => StyleSheet.create({
   HeaderContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: COLORS.BlackMain
+    backgroundColor: color.Accent
   },
   HeaderText: {
     fontSize: 20,
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginStart: 24,
     justifyContent: 'center',
-    color: COLORS.WhiteMain,
+    color: color.TextAssistant,
     fontFamily: FONT_FAMILY.is_tok_web_bold,
   },
 });

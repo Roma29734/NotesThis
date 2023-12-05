@@ -1,13 +1,16 @@
 import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import React from "react";
-import { COLORS } from "../../assets/Theme";
+import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
 
 const ProfileScreen = ({ navigation }: any) => {
 
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
+
   const SetThemeTouchHandler = () => {
-    navigation.navigate("NameThemeSettings")
+    navigation.navigate("NameThemeSettings");
   };
   const ChangeLanguageTouchHandler = () => {
 
@@ -17,11 +20,11 @@ const ProfileScreen = ({ navigation }: any) => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.BlackBackground, flex: 1 }}>
+    <SafeAreaView style={styleComponent.container}>
       <HeaderBarSimpleTitle title={"Profile"} />
-      <View style={styles.mainContainer}>
+      <View style={styleComponent.mainContainer}>
 
-        <View style={styles.viewImageContainer}>
+        <View style={styleComponent.viewImageContainer}>
           <View style={{
             width: 110,
             height: 110,
@@ -33,20 +36,23 @@ const ProfileScreen = ({ navigation }: any) => {
           </View>
           <Image
             source={require("../../assets/image/ic_edit_profile.png")}
-            style={styles.imageEditProfile}
+            style={styleComponent.imageEditProfile}
           />
         </View>
 
-        <Text style={styles.textName}>Your Name </Text>
+        <Text style={styleComponent.textName}>Your Name </Text>
       </View>
 
-      <View style={styles.viewCardAppSettings}>
+      <View style={styleComponent.viewCardAppSettings}>
 
-        <Text style={styles.textAppSettings}>App Settings</Text>
+        <Text style={styleComponent.textAppSettings}>App Settings</Text>
 
-        <AppSettingsItems nameItem={'Set Theme'} locationImage={require("../../assets/image/ic_theme.png")} TouchHandler={SetThemeTouchHandler} />
-        <AppSettingsItems nameItem={'Change Language'} locationImage={require("../../assets/image/ic_language.png")} TouchHandler={ChangeLanguageTouchHandler}/>
-        <AppSettingsItems nameItem={'Out Account'} locationImage={require("../../assets/image/ic_exit_account.png")} TouchHandler={OutAccountTouchHandler}/>
+        <AppSettingsItems nameItem={"Set Theme"} locationImage={require("../../assets/image/ic_theme.png")}
+                          TouchHandler={SetThemeTouchHandler} />
+        <AppSettingsItems nameItem={"Change Language"} locationImage={require("../../assets/image/ic_language.png")}
+                          TouchHandler={ChangeLanguageTouchHandler} />
+        <AppSettingsItems nameItem={"Out Account"} locationImage={require("../../assets/image/ic_exit_account.png")}
+                          TouchHandler={OutAccountTouchHandler} />
 
       </View>
     </SafeAreaView>
@@ -54,8 +60,11 @@ const ProfileScreen = ({ navigation }: any) => {
 };
 
 const { height, width } = Dimensions.get("window");
-const styles = StyleSheet.create({
+const styles = (color: UIColor) => StyleSheet.create({
 
+  container: {
+    backgroundColor: color.BackgroundMain, flex: 1
+  },
   mainContainer: {
     alignSelf: "center",
     alignItems: "center",
@@ -82,11 +91,11 @@ const styles = StyleSheet.create({
   },
   textName: {
     textAlign: "center",
-    color: COLORS.WhiteMain,
+    color: color.TextAssistant,
     fontSize: 24
   },
   viewCardAppSettings: {
-    backgroundColor: "#7E8A95",
+    backgroundColor: color.SlideAppSettingsBackground,
     flex: 1,
     marginTop: 64,
     borderTopEndRadius: 32,
@@ -97,8 +106,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginStart: 24,
     fontSize: 18,
-    color: COLORS.BlackBackground
-  },
+    color: COLORS.WhiteMain
+  }
 });
 
 export default ProfileScreen;
