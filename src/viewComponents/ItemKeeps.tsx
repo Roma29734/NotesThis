@@ -1,29 +1,32 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {COLORS, FONT_FAMILY} from '../assets/Theme';
+import { COLORS, FONT_FAMILY, UIColor, useThemeColor } from "../assets/Theme";
 import {ToDoItem} from '../data/model/ToDoItemModel';
 import React from 'react';
 
 const ItemKeeps: React.FC<{
   todo: ToDoItem;
 }> = ({todo: {id, valueTitle, createData}}) => {
+
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
   return (
-    <View style={styles.MainContainerView}>
+    <View style={styleComponent.MainContainerView}>
       {}
-      <Text style={styles.HeaderText}>
+      <Text style={styleComponent.HeaderText}>
         {valueTitle}
       </Text>
-      <Text style={styles.DateText}>{createData}</Text>
+      <Text style={styleComponent.DateText}>{createData}</Text>
     </View>
   );
 };
 export default ItemKeeps;
 
-const styles = StyleSheet.create({
+const styles= (color: UIColor) => StyleSheet.create({
   HeaderText: {
     fontSize: 25,
     marginTop: 16,
     marginStart: 16,
-    color: COLORS.BlackMain,
+    color: color.BaseReturnedSimple,
     fontFamily: FONT_FAMILY.is_tok_web_bold,
   },
   DateText: {
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 16,
     flexDirection: 'column',
-    backgroundColor: COLORS.HoneydewContrast,
+    backgroundColor: color.CardNote,
     borderRadius: 24,
   },
 });

@@ -87,7 +87,8 @@ const styles = (color: UIColor) => StyleSheet.create({
     height: 30,
     position: "absolute",
     bottom: 8,
-    end: 6
+    end: 6,
+    tintColor: color.SlideAppSettingsBackground
   },
   textName: {
     textAlign: "center",

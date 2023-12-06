@@ -1,22 +1,25 @@
 import { Dimensions, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { COLORS } from "../assets/Theme";
+import { COLORS, UIColor, useThemeColor } from "../assets/Theme";
 import React from "react";
 
-// @ts-ignore
-const AppSettingsItems = ({ nameItem, locationImage, TouchHandler } ) => {
+
+const AppSettingsItems = ({ nameItem, locationImage, TouchHandler }: any ) => {
+
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
   return (
-    <TouchableOpacity style={styles.viewContainerAppSettings} onPress={() => {
+    <TouchableOpacity style={styleComponent.viewContainerAppSettings} onPress={() => {
       TouchHandler();
     }}>
 
       <View style={{ flexDirection: "row" }}>
-        <Image style={styles.imageAppSettingsIlustrIco} source={locationImage} />
+        <Image style={styleComponent.imageAppSettingsIlustrIco} source={locationImage} />
 
-        <Text style={styles.textAppSettingsIlustr}>{nameItem}</Text>
+        <Text style={styleComponent.textAppSettingsIlustr}>{nameItem}</Text>
       </View>
 
 
-      <Image style={styles.imageAppSettingsNextNavigate}
+      <Image style={styleComponent.imageAppSettingsNextNavigate}
              source={require("../assets/image/ic_arrow_next_navigate.png")} />
 
     </TouchableOpacity>
@@ -24,7 +27,7 @@ const AppSettingsItems = ({ nameItem, locationImage, TouchHandler } ) => {
 }
 
 const { height, width } = Dimensions.get("window");
-const styles = StyleSheet.create({
+const styles= (color: UIColor) => StyleSheet.create({
 
   viewContainerAppSettings: {
     flexDirection: "row",
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     alignSelf: "center",
-    tintColor: COLORS.BlackBackground
+    tintColor: color.BaseReturnedSimple
   }
 });
 

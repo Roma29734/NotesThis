@@ -21,18 +21,23 @@ export const COLORS = {
   GrayMain: "#494646",
   BlackBackground: "#0f1823",
   LightGray: "#808080",
-  AccentLight: "#F6F7F9",
+  AccentLight: "#e2e3e5",
   SimpleBlack: "#000000",
   GrayAppSettingsDark: '#7E8A95',
+  BrandAccentLight: '#079B7F',
 };
 
 export const COLORSLight = {
   Accent: COLORS.AccentLight,
-  BottomIcFocus: COLORS.BlackBackground,
+  BottomIcFocus: COLORS.BrandAccentLight,
   BottomIcNotFocus: COLORS.LightGray,
   TextAssistant: COLORS.BlackMain,
   BackgroundMain: COLORS.WhiteMain,
-  SlideAppSettingsBackground: COLORS.SimpleBlack,
+  SlideAppSettingsBackground: COLORS.BrandAccentLight,
+  RadioButtonActive: COLORS.SimpleBlack,
+  RadioButtonUnchecked: COLORS.GrayAppSettingsDark,
+  BaseReturnedSimple: COLORS.WhiteMain,
+  CardNote: COLORS.BrandAccentLight,
 };
 
 export const COLORSDark = {
@@ -42,6 +47,10 @@ export const COLORSDark = {
   TextAssistant: COLORS.AccentLight,
   BackgroundMain: COLORS.BlackBackground,
   SlideAppSettingsBackground: COLORS.GrayAppSettingsDark,
+  RadioButtonActive: COLORS.WhiteMain,
+  RadioButtonUnchecked: COLORS.AccentLight,
+  BaseReturnedSimple: COLORS.SimpleBlack,
+  CardNote: COLORS.HoneydewContrast,
 };
 
 export type UIColor = typeof COLORSLight | typeof COLORSDark

@@ -1,5 +1,5 @@
 import { Dimensions, Image, SafeAreaView, StyleSheet, View } from "react-native";
-import { COLORS } from "../../assets/Theme";
+import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import React from "react";
 import { RadioButton } from "react-native-paper";
@@ -7,6 +7,8 @@ import { RadioButton } from "react-native-paper";
 
 const ThemeSettingsScreen = ({ navigation }: any) => {
 
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
   const [checked, setChecked] = React.useState("first");
 
   const BackHandler = () => {
@@ -18,32 +20,47 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styleComponent.container}>
       <HeaderBarTitleButton title={"Set Theme"} BackHandler={BackHandler} showDeleteItem={false}
                             DeleteHandler={DeleteHandler} />
 
-      <View style={styles.mainContainer}>
-        <View style={styles.containerViewIcoSub}>
+      <View style={styleComponent.mainContainer}>
+        <View style={styleComponent.containerViewIcoSub}>
 
-          <Image source={require("../../assets/image/dark_theme_ico_sub.png")} style={styles.imageIcoSub}
+          <Image source={require("../../assets/image/dark_theme_ico_sub.png")} style={styleComponent.imageIcoSub}
                  resizeMode={"center"} />
 
           <RadioButton
             value="first"
             status={checked === "first" ? "checked" : "unchecked"}
             onPress={() => setChecked("first")}
-            color={COLORS.WhiteMain}
+            color={useThemeColor().RadioButtonActive}
+            uncheckedColor={useThemeColor().RadioButtonUnchecked}
           />
         </View>
-        <View style={styles.containerViewIcoSub}>
+        <View style={styleComponent.containerViewIcoSub}>
 
-          <Image source={require("../../assets/image/light_theme_ico_sub.png")} style={styles.imageIcoSub}
+          <Image source={require("../../assets/image/light_theme_ico_sub.png")} style={styleComponent.imageIcoSub}
                  resizeMode={"center"} />
         <RadioButton
             value="second"
             status={checked === "second" ? "checked" : "unchecked"}
             onPress={() => setChecked("second")}
-            color={COLORS.WhiteMain}
+            color={useThemeColor().RadioButtonActive}
+            uncheckedColor={useThemeColor().RadioButtonUnchecked}
+          />
+        </View>
+
+        <View style={styleComponent.containerViewIcoSub}>
+
+          <Image source={require("../../assets/image/system_theme_ico_sub.png")} style={styleComponent.imageIcoSub}
+                 resizeMode={"center"} />
+          <RadioButton
+            value="third"
+            status={checked === "third" ? "checked" : "unchecked"}
+            onPress={() => setChecked("third")}
+            color={useThemeColor().RadioButtonActive}
+            uncheckedColor={useThemeColor().RadioButtonUnchecked}
           />
         </View>
       </View>
@@ -51,7 +68,7 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
   );
 };
 const { height, width } = Dimensions.get("window");
-const styles = StyleSheet.create({
+const styles= (color: UIColor) => StyleSheet.create({
 
   mainContainer: {
     alignSelf: "center",
@@ -59,7 +76,8 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   container: {
-    backgroundColor: COLORS.BlackBackground, flex: 1
+    backgroundColor: color.BackgroundMain,
+    flex: 1
   },
   imageIcoSub: {
     width: 150,

@@ -1,28 +1,32 @@
 import React from "react";
 import { StyleSheet, Image, View } from "react-native";
-import { COLORS } from "../assets/Theme";
+import { COLORS, UIColor, useThemeColor } from "../assets/Theme";
 
 // @ts-ignore
 const ImageBack = ({visible}) => {
 
+
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
+
   if (!visible) {
     return (
-      <View style={styles.ImageContainerInvisible}>
+      <View style={styleComponent.ImageContainerInvisible}>
       </View>
     );
   } else {
     return (
-      <View style={styles.ImageContainer}>
+      <View style={styleComponent.ImageContainer}>
         <Image
           source={require("../assets/image/arrow_back.png")}
-          style={styles.Image}
+          style={styleComponent.Image}
         />
       </View>
     );
   }
 };
 
-const styles = StyleSheet.create({
+const styles= (color: UIColor) => StyleSheet.create({
   ImageContainer: {
     height: 36,
     width: 36,
@@ -43,7 +47,8 @@ const styles = StyleSheet.create({
   },
   Image: {
     height: 24,
-    width: 24
+    width: 24,
+    tintColor: color.TextAssistant,
   }
 });
 

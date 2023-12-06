@@ -1,20 +1,22 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import React, { useEffect } from "react";
-import { COLORS } from "../../assets/Theme";
+import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 
 const RemoteScreen = ({ navigation }: any) => {
 
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
+
   return (
-    <View style={Style.contrainer}>
+    <View style={styleComponent.contrainer}>
       <HeaderBarSimpleTitle title={"NotesThis"} />
       <Text>This is remote screen, in visible notes in saved remote</Text>
 
-      <TouchableOpacity style={styles.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
+      <TouchableOpacity style={styleComponent.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
         <Image
           source={require("../../assets/image/ic_plus_white.png")}
-          style={styles.Image}
+          style={styleComponent.Image}
         />
       </TouchableOpacity>
 
@@ -22,10 +24,10 @@ const RemoteScreen = ({ navigation }: any) => {
   );
 };
 const { height, width } = Dimensions.get("window");
-const styles = StyleSheet.create({
+const styles = (color: UIColor) => StyleSheet.create({
   contrainer: {
     flex: 1,
-    backgroundColor: COLORS.WhiteMain
+    backgroundColor: color.BackgroundMain
   },
   buttonCreate: {
     width: 48,
