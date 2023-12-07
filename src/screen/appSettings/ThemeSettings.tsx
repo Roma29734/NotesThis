@@ -3,7 +3,7 @@ import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import React, { useEffect } from "react";
 import { RadioButton } from "react-native-paper";
-import {getStateThemeAppData, saveStateThemeAppData} from '../../data/localData/AsyncStorageData'
+import {getStateThemeAppData, saveStateThemeAppData} from '../../data/localData/MmkvStorageData'
 
 
 const ThemeSettingsScreen = ({ navigation }: any) => {

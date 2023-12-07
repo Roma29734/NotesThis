@@ -2,7 +2,7 @@ import { Appearance, ColorSchemeName, useColorScheme } from "react-native";
 import { ToDoItem } from "../data/model/ToDoItemModel";
 import { useTheme } from "@react-navigation/native";
 import * as React from "react";
-import { getStateThemeAppData } from "../data/localData/AsyncStorageData";
+import { getStateThemeAppData } from "../data/localData/MmkvStorageData";
 
 export const useThemeColor = () => {
   const colorScheme = useColorScheme();
