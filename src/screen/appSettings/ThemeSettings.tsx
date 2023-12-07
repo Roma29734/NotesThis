@@ -1,15 +1,14 @@
 import { Dimensions, Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
-import React from "react";
+import React, { useEffect } from "react";
 import { RadioButton } from "react-native-paper";
+import {getStateThemeAppData, saveStateThemeAppData} from '../../data/localData/AsyncStorageData'
 
 
 const ThemeSettingsScreen = ({ navigation }: any) => {
 
-  const colorTheme = useThemeColor();
-  const styleComponent = styles(colorTheme);
-  const [checked, setChecked] = React.useState("first");
+  const [checked, setChecked] = React.useState(getStateThemeAppData());
 
   const BackHandler = () => {
     navigation.pop();
@@ -18,6 +17,9 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
   const DeleteHandler = () => {
 
   };
+
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
 
   return (
     <SafeAreaView style={styleComponent.container}>
@@ -31,36 +33,50 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
                  resizeMode={"center"} />
 
           <RadioButton
-            value="first"
-            status={checked === "first" ? "checked" : "unchecked"}
-            onPress={() => setChecked("first")}
-            color={useThemeColor().RadioButtonActive}
-            uncheckedColor={useThemeColor().RadioButtonUnchecked}
+            value="dark"
+            status={checked === "dark" ? "checked" : "unchecked"}
+            onPress={
+              () => {
+                setChecked("dark");
+                saveStateThemeAppData('dark')
+              }
+            }
+            color={colorTheme.RadioButtonActive}
+            uncheckedColor={colorTheme.RadioButtonUnchecked}
           />
         </View>
         <View style={styleComponent.containerViewIcoSub}>
 
           <Image source={require("../../assets/image/light_theme_ico_sub.png")} style={styleComponent.imageIcoSub}
                  resizeMode={"center"} />
-        <RadioButton
-            value="second"
-            status={checked === "second" ? "checked" : "unchecked"}
-            onPress={() => setChecked("second")}
-            color={useThemeColor().RadioButtonActive}
-            uncheckedColor={useThemeColor().RadioButtonUnchecked}
+          <RadioButton
+            value="light"
+            status={checked === "light" ? "checked" : "unchecked"}
+            onPress={
+            () => {
+              setChecked("light");
+              saveStateThemeAppData('light')
+            }
+          }
+            color={colorTheme.RadioButtonActive}
+            uncheckedColor={colorTheme.RadioButtonUnchecked}
           />
         </View>
-
         <View style={styleComponent.containerViewIcoSub}>
 
           <Image source={require("../../assets/image/system_theme_ico_sub.png")} style={styleComponent.imageIcoSub}
                  resizeMode={"center"} />
           <RadioButton
-            value="third"
-            status={checked === "third" ? "checked" : "unchecked"}
-            onPress={() => setChecked("third")}
-            color={useThemeColor().RadioButtonActive}
-            uncheckedColor={useThemeColor().RadioButtonUnchecked}
+            value="system"
+            status={checked === "system" ? "checked" : "unchecked"}
+            onPress={
+              () => {
+                setChecked("system");
+                saveStateThemeAppData('system')
+              }
+            }
+            color={colorTheme.RadioButtonActive}
+            uncheckedColor={colorTheme.RadioButtonUnchecked}
           />
         </View>
       </View>
@@ -70,14 +86,14 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
 const { height, width } = Dimensions.get("window");
 const styles= (color: UIColor) => StyleSheet.create({
 
+
   mainContainer: {
     alignSelf: "center",
     alignItems: "center",
     flexDirection: "row"
   },
   container: {
-    backgroundColor: color.BackgroundMain,
-    flex: 1
+    backgroundColor: color.BackgroundMain, flex: 1
   },
   imageIcoSub: {
     width: 150,

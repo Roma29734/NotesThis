@@ -1,15 +1,27 @@
 import { Appearance, ColorSchemeName, useColorScheme } from "react-native";
 import { ToDoItem } from "../data/model/ToDoItemModel";
 import { useTheme } from "@react-navigation/native";
-import * as React from 'react';
+import * as React from "react";
+import { getStateThemeAppData } from "../data/localData/AsyncStorageData";
 
 export const useThemeColor = () => {
   const colorScheme = useColorScheme();
-  if (colorScheme == 'light') {
-    console.log('return light');
+  const stateThemeApp = getStateThemeAppData();
+  console.log(`stateThemeApp ${stateThemeApp}`)
+
+  if(stateThemeApp == 'light') {
+    Appearance.setColorScheme('light')
+  } else if(stateThemeApp == 'dark') {
+    Appearance.setColorScheme('dark')
+  } else if(stateThemeApp == 'system') {
+    Appearance.setColorScheme(null)
+  }
+
+  if (colorScheme == "light") {
+    console.log("return light");
     return COLORSLight;
   } else {
-    console.log('return dark');
+    console.log("return dark");
     return COLORSDark;
   }
 };
@@ -23,8 +35,8 @@ export const COLORS = {
   LightGray: "#808080",
   AccentLight: "#e2e3e5",
   SimpleBlack: "#000000",
-  GrayAppSettingsDark: '#7E8A95',
-  BrandAccentLight: '#079B7F',
+  GrayAppSettingsDark: "#7E8A95",
+  BrandAccentLight: "#079B7F"
 };
 
 export const COLORSLight = {
@@ -37,7 +49,7 @@ export const COLORSLight = {
   RadioButtonActive: COLORS.SimpleBlack,
   RadioButtonUnchecked: COLORS.GrayAppSettingsDark,
   BaseReturnedSimple: COLORS.WhiteMain,
-  CardNote: COLORS.BrandAccentLight,
+  CardNote: COLORS.BrandAccentLight
 };
 
 export const COLORSDark = {
@@ -50,7 +62,7 @@ export const COLORSDark = {
   RadioButtonActive: COLORS.WhiteMain,
   RadioButtonUnchecked: COLORS.AccentLight,
   BaseReturnedSimple: COLORS.SimpleBlack,
-  CardNote: COLORS.HoneydewContrast,
+  CardNote: COLORS.HoneydewContrast
 };
 
 export type UIColor = typeof COLORSLight | typeof COLORSDark
