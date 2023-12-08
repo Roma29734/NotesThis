@@ -3,9 +3,7 @@ import { COLORS, FONT_FAMILY, UIColor, useThemeColor } from "../assets/Theme";
 import {ToDoItem} from '../data/model/ToDoItemModel';
 import React from 'react';
 
-const ItemKeeps: React.FC<{
-  todo: ToDoItem;
-}> = ({todo: {id, valueTitle, createData}}) => {
+const ItemKeeps = ({valueTitle, createData}: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);

@@ -1,17 +1,41 @@
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import React, { useEffect } from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
+import { getRelationUser } from "../../data/remoteData/RemoteQuery";
+import ItemKeeps from "../../viewComponents/ItemKeeps";
 
 const RemoteScreen = ({ navigation }: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
 
+  // Insert the user token here
+  const { items, isLoading } = getRelationUser("token");
+
+  if (isLoading) {
+    return (
+      <View style={styleComponent.contrainer}>
+        <HeaderBarSimpleTitle title={"NotesThis"} />
+        <ActivityIndicator size={"large"} />
+      </View>
+    );
+  }
+
   return (
     <View style={styleComponent.contrainer}>
       <HeaderBarSimpleTitle title={"NotesThis"} />
-      <Text>This is remote screen, in visible notes in saved remote</Text>
+
+      <FlatList
+        data={items}
+        renderItem={({ item })  =>
+        <TouchableOpacity>
+          <ItemKeeps valueTitle={item.title} createData={item.createData}/>
+        </TouchableOpacity>
+      }
+        style={styleComponent.FlatListMain}
+      />
+
 
       <TouchableOpacity style={styleComponent.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
         <Image
@@ -26,7 +50,6 @@ const RemoteScreen = ({ navigation }: any) => {
 const { height, width } = Dimensions.get("window");
 const styles = (color: UIColor) => StyleSheet.create({
   contrainer: {
-    flex: 1,
     backgroundColor: color.BackgroundMain
   },
   buttonCreate: {
@@ -47,6 +70,11 @@ const styles = (color: UIColor) => StyleSheet.create({
   },
   FlatListMain: {
     height: height - 160
+  },
+  loadingAlert: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 export default RemoteScreen;

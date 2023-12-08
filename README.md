@@ -5,6 +5,9 @@
 * ##### react-native
 * ##### react-native-cli
 * ##### react-native-navigation
+* ##### react-native-paper
+* ##### react-native-mmkv
+* ##### typeScript
 * ##### axios
 * ##### sqlite
 

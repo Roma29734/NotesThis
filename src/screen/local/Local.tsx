@@ -13,6 +13,7 @@ import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { useIsFocused } from "@react-navigation/native";
+import itemKeeps from "../../viewComponents/ItemKeeps";
 
 const LocalScreen = ({ navigation }: any) => {
   const [todos, setTodos] = useState<ToDoItem[]>([]);
@@ -56,7 +57,7 @@ const LocalScreen = ({ navigation }: any) => {
         style={styleComponent.FlatListMain}
         renderItem={({ item }) =>
           <TouchableOpacity onPress={() => navigation.navigate("DetailNotes", { transmittedTodoItem: item })}>
-            <ItemKeeps todo={item} />
+            <ItemKeeps valueTitle={item.valueTitle} createData={item.createData} />
           </TouchableOpacity>
         }
       />
