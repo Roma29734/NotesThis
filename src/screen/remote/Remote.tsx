@@ -11,16 +11,8 @@ const RemoteScreen = ({ navigation }: any) => {
   const styleComponent = styles(colorTheme);
 
   // Insert the user token here
-  const { items, isLoading } = getRelationUser("token");
+  const { items, isLoading } = getRelationUser("JLEnItqWM8");
 
-  if (isLoading) {
-    return (
-      <View style={styleComponent.contrainer}>
-        <HeaderBarSimpleTitle title={"NotesThis"} />
-        <ActivityIndicator size={"large"} />
-      </View>
-    );
-  }
 
   return (
     <View style={styleComponent.contrainer}>
@@ -29,15 +21,16 @@ const RemoteScreen = ({ navigation }: any) => {
       <FlatList
         data={items}
         renderItem={({ item })  =>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("DetailRemoteNote", { transmittedTodoItemRemote: item })}>
           <ItemKeeps valueTitle={item.title} createData={item.createData}/>
         </TouchableOpacity>
       }
         style={styleComponent.FlatListMain}
       />
 
+      {isLoading && <ActivityIndicator size={"large"} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,}} />}
 
-      <TouchableOpacity style={styleComponent.buttonCreate} onPress={() => navigation.navigate("AddNotes")}>
+      <TouchableOpacity style={styleComponent.buttonCreate} onPress={() => navigation.navigate("AddRemoteNote")}>
         <Image
           source={require("../../assets/image/ic_plus_white.png")}
           style={styleComponent.Image}

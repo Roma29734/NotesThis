@@ -3,6 +3,7 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import { deleteTodoItem, getDBConnection, updateTodoItem } from "../../data/localData/LocalDataBase";
+import { useThemeColor } from "../../assets/Theme";
 
 const DetailNotesScreen = ({ route, navigation }: any) => {
 
@@ -67,13 +68,17 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
     }
   };
 
+
+  const colorTheme = useThemeColor();
+  const styleComponent = Style(colorTheme);
+
   return (
-    <View style={Style.contrainer}>
+    <View style={styleComponent.contrainer}>
 
       <HeaderBarTitleButton title={"Yours Note"} BackHandler={BackHandler} showDeleteItem={true}
                             DeleteHandler={DeleteHandler} />
 
-      <TextInput style={Style.inputTitle}
+      <TextInput style={styleComponent.inputTitle}
                  placeholder="Enter your title notes"
                  onChangeText={onChangeTextInputTitle}
                  value={textInputTitle} />
@@ -81,23 +86,24 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
       <TextInput editable
                  multiline={true}
                  numberOfLines={100}
-                 style={Style.inputSupTitle}
+                 style={styleComponent.inputSupTitle}
                  placeholder="Enter your title notes"
                  onChangeText={onChangeTextInputSubTitle}
                  value={textInputSubTitle} />
 
-      <TouchableOpacity style={Style.buttonAdd} onPress={() => {
+      <TouchableOpacity style={styleComponent.buttonAdd} onPress={() => {
         if (checkInputData() == true) {
           updateTodo();
         } else {
           Alert.alert("Unable to update a note", "Fill in all the fields to update a note");
         }
       }}>
-        <Text style={Style.textFromButtonAdd}>Update</Text>
+        <Text style={styleComponent.textFromButtonAdd}>Update</Text>
       </TouchableOpacity>
 
     </View>
   );
-
 };
 export default DetailNotesScreen;
+
+

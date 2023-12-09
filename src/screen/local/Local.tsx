@@ -34,7 +34,6 @@ const LocalScreen = ({ navigation }: any) => {
       await createTable(db);
       const storedTodoItems = await getTodoItems(db);
       if (storedTodoItems.length) {
-        console.log(storedTodoItems);
         setTodos(storedTodoItems);
       } else {
         await saveTodoItems(db, initTodos);

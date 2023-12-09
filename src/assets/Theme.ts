@@ -7,7 +7,6 @@ import { getStateThemeAppData } from "../data/localData/MmkvStorageData";
 export const useThemeColor = () => {
   const colorScheme = useColorScheme();
   const stateThemeApp = getStateThemeAppData();
-  console.log(`stateThemeApp ${stateThemeApp}`)
 
   if(stateThemeApp == 'light') {
     Appearance.setColorScheme('light')
@@ -18,10 +17,8 @@ export const useThemeColor = () => {
   }
 
   if (colorScheme == "light") {
-    console.log("return light");
     return COLORSLight;
   } else {
-    console.log("return dark");
     return COLORSDark;
   }
 };

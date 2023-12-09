@@ -2,9 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
-import { ToDoItem } from "../../data/model/ToDoItemModel";
-import { createTable, getDBConnection, getTodoItems, saveTodoItems } from "../../data/localData/LocalDataBase";
-import { DarkTheme } from "@react-navigation/native";
+import { getDBConnection, saveTodoItems } from "../../data/localData/LocalDataBase";
+import { useThemeColor } from "../../assets/Theme";
 
 const AddNotesScreen = ({ navigation }: any) => {
 
@@ -48,12 +47,16 @@ const AddNotesScreen = ({ navigation }: any) => {
     }
   };
 
+
+  const colorTheme = useThemeColor();
+  const styleComponent = Style(colorTheme);
+
   return (
-    <View style={Style.contrainer}>
+    <View style={styleComponent.contrainer}>
 
       <HeaderBarTitleButton title={"add Note"} BackHandler={BackHandler} showDeleteItem={false} DeleteHandler={false} />
 
-      <TextInput style={Style.inputTitle}
+      <TextInput style={styleComponent.inputTitle}
                  placeholder="Enter your title notes"
                  onChangeText={onChangeTextInputTitle}
                  value={textInputTitle} />
@@ -61,19 +64,19 @@ const AddNotesScreen = ({ navigation }: any) => {
       <TextInput editable
                  multiline={true}
                  numberOfLines={100}
-                 style={Style.inputSupTitle}
+                 style={styleComponent.inputSupTitle}
                  placeholder="Enter your title notes"
                  onChangeText={onChangeTextInputSubTitle}
                  value={textInputSubTitle} />
 
-      <TouchableOpacity style={Style.buttonAdd} onPress={() => {
+      <TouchableOpacity style={styleComponent.buttonAdd} onPress={() => {
         if (checkInputData() == true) {
           addTodo();
         } else {
           Alert.alert("Unable to create a note", "Fill in all the fields to create a note");
         }
       }}>
-        <Text style={Style.textFromButtonAdd}>Add</Text>
+        <Text style={styleComponent.textFromButtonAdd}>Add</Text>
       </TouchableOpacity>
 
     </View>

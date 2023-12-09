@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../assets/Theme";
+import { COLORS, UIColor } from "../assets/Theme";
 import { Dimensions } from "react-native";
 
 const { height, width } = Dimensions.get("window");
 //  styles from homeSreen
-const styles = StyleSheet.create({
+const styles = (color: UIColor) => StyleSheet.create({
   contrainer: {
     flex: 1,
-    backgroundColor: COLORS.WhiteMain,
+    backgroundColor: color.BackgroundMain,
   },
   loadingAlert: {
     flex: 1,
@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     borderWidth: 2,
-    borderColor: COLORS.BlackMain,
+    borderColor: color.CardNote,
     borderRadius: 16,
     marginStart: 16,
     marginEnd: 16,
     marginTop: 24,
     fontSize: 16,
-    color: COLORS.BlackMain,
+    color: color.TextAssistant,
   },
   inputSupTitle: {
     maxHeight: width - 55 - 30,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#000000",
+    backgroundColor: COLORS.BlackMain,
   },
   textFromButtonAdd: {
     color: COLORS.WhiteMain,
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
   Image: {
     height: 28,
     width: 28,
-    width: "100%",
     alignItems: "center",
   },
   FlatListMain: {
