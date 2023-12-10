@@ -9,6 +9,7 @@ import ThemeSettings from "./src/screen/appSettings/ThemeSettings";
 import { useThemeColor } from "./src/assets/Theme";
 import { DetailRemoteNote } from "./src/screen/detailNotes/DetailRemoteNote";
 import { AddRemoteNoteScreen } from "./src/screen/addNotes/AddRemoteNote";
+import { LoginAccountScreen } from "./src/screen/account/LoginAccount";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ function App() {
         />
         <NavigationContainer>
           <Stack.Navigator>
+            <Stack.Screen name='LoginAccount' component={LoginAccountScreen} options={{headerShown: false}}/>
             <Stack.Screen name="tabNav" component={MainTabNavScreen} options={{ headerShown: false }} />
             <Stack.Screen name="AddNotes" component={AddNotesScreen} options={{ headerShown: false }}/>
             <Stack.Screen name="DetailNotes" component={DetailNotes} options={{headerShown: false}}/>
