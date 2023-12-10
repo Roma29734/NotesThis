@@ -50,7 +50,7 @@ const LocalScreen = ({ navigation }: any) => {
 
   return (
     <View style={styleComponent.contrainer}>
-      <HeaderBarSimpleTitle title={"NotesThis"} />
+      <HeaderBarSimpleTitle title={"Local Notes"} />
       <FlatList
         data={todos}
         style={styleComponent.FlatListMain}

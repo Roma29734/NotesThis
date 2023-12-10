@@ -5,16 +5,15 @@ import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import React, { useCallback, useEffect, useState } from "react";
 import { Application_Id, REST_API_Key } from "../../../Keys";
 import axios from "axios/index";
+import { insertRelationToUser } from "../../data/remoteData/RemoteQuery";
 
 export const AddRemoteNoteScreen = ({ navigation }: any) => {
   const [textInputTitle, onChangeTextInputTitle] = useState("");
   const [textInputSubTitle, onChangeTextInputSubTitle] = useState("");
   const [currentData, setCurrentData] = useState("");
-  const [resultItem, setResultItem] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const insertRelationToNoteList = (title: string, subTitle: string, createData: string) => {
-
     setIsLoading(true);
     let data = JSON.stringify({
       "title": title,
@@ -22,28 +21,53 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
       "createData": createData
     });
 
-    let config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "https://parseapi.back4app.com/classes/noteList",
+    axios.post("https://parseapi.back4app.com/classes/noteList", `${data}`, {
       headers: {
         "X-Parse-Application-Id": Application_Id,
         "X-Parse-REST-API-Key": REST_API_Key,
         "Content-Type": "application/json"
-      },
-      data: data
-    };
-    axios.request(config)
-      .then(({ response }: any) => {
-        console.log("вызов insertRelationToNoteList");
-        console.log(JSON.stringify(response.data));
-        setResultItem(response.objectId);
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
+      }
+    }) .then(({ data }) => {
+      console.log(data);
+      UpdateInsertRelationToUser('JLEnItqWM8', `${data.objectId}`, 'r:2d2dce1b3ff9e49576aa52d404837671')
+    }).catch(err => {
+      console.log(err);
+      setIsLoading(false);
+    }).finally(() => {
+      }
+    );
   };
 
+  const UpdateInsertRelationToUser = (objectId: string, noteListId: string, sessionToken: string ) => {
+    let data = JSON.stringify({
+      "relation": {
+        "__op": "AddRelation",
+        "objects": [
+          {
+            "__type": "Relation",
+            "className": "noteList",
+            "objectId": `${noteListId}`
+          }
+        ]
+      }
+    });
+
+    axios.put(`https://parseapi.back4app.com/classes/_User/${objectId}`, `${data}`, {
+      headers: {
+        "X-Parse-Application-Id": Application_Id,
+        "X-Parse-REST-API-Key": REST_API_Key,
+        "Content-Type": "application/json",
+        "X-Parse-Session-Token": `${sessionToken}`,
+      }
+    }) .then(({ data }) => {
+      console.log(data);
+    }).catch(err => {
+      console.log(err);
+    }).finally(() => {
+        setIsLoading(false);
+      }
+    );
+  }
 
   useEffect(() => {
     var date = new Date().getDate();
@@ -77,7 +101,7 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
       <HeaderBarTitleButton title={"add Note"} BackHandler={BackHandler} showDeleteItem={false} DeleteHandler={false} />
 
 
-      {/*{isThisLoading && <ActivityIndicator size={"large"} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,}} />}*/}
+      {isLoading && <ActivityIndicator size={"large"} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,}} />}
 
       <TextInput style={styleComponent.inputTitle}
                  placeholder="Enter your title notes"

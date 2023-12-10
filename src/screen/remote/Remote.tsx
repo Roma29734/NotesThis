@@ -4,19 +4,20 @@ import React, { useEffect } from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { getRelationUser } from "../../data/remoteData/RemoteQuery";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
+import { useIsFocused } from "@react-navigation/native";
 
 const RemoteScreen = ({ navigation }: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
-
+  const isFocused = useIsFocused();
   // Insert the user token here
-  const { items, isLoading } = getRelationUser("JLEnItqWM8");
+  const { items, isLoading } = getRelationUser("JLEnItqWM8", isFocused);
 
 
   return (
     <View style={styleComponent.contrainer}>
-      <HeaderBarSimpleTitle title={"NotesThis"} />
+      <HeaderBarSimpleTitle title={"Remote Notes"} />
 
       <FlatList
         data={items}

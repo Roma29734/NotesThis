@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Application_Id, REST_API_Key } from "../../../Keys";
 import { ToDoItemRemote } from "../model/ToDoItemRemote";
 
-export const getRelationUser = (objectId: string) => {
+export const getRelationUser = (objectId: string, isFocused: boolean) => {
   const [resultItem, setResultItem] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -26,7 +26,7 @@ export const getRelationUser = (objectId: string) => {
         setIsLoading(false);
       }
     );
-  }, []);
+  }, [isFocused]);
 
   return { items: resultItem, isLoading };
 };
