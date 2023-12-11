@@ -5,6 +5,7 @@ import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { getRelationUser } from "../../data/remoteData/RemoteQuery";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
 import { useIsFocused } from "@react-navigation/native";
+import { getStateUserObjectId } from "../../data/localData/MmkvStorageData";
 
 const RemoteScreen = ({ navigation }: any) => {
 
@@ -12,7 +13,7 @@ const RemoteScreen = ({ navigation }: any) => {
   const styleComponent = styles(colorTheme);
   const isFocused = useIsFocused();
   // Insert the user token here
-  const { items, isLoading } = getRelationUser("JLEnItqWM8", isFocused);
+  const { items, isLoading } = getRelationUser(`${getStateUserObjectId()}`, isFocused);
 
 
   return (

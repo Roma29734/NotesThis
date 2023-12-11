@@ -3,6 +3,7 @@ import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import React from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
+import { getStateUserName } from "../../data/localData/MmkvStorageData";
 
 const ProfileScreen = ({ navigation }: any) => {
 
@@ -40,7 +41,7 @@ const ProfileScreen = ({ navigation }: any) => {
           />
         </View>
 
-        <Text style={styleComponent.textName}>Your Name </Text>
+        <Text style={styleComponent.textName}>{getStateUserName()}</Text>
       </View>
 
       <View style={styleComponent.viewCardAppSettings}>

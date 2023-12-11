@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Application_Id, REST_API_Key } from "../../../Keys";
 import axios from "axios/index";
 import { insertRelationToUser } from "../../data/remoteData/RemoteQuery";
+import { getStateUserObjectId, getStateUserSessionToken } from "../../data/localData/MmkvStorageData";
 
 export const AddRemoteNoteScreen = ({ navigation }: any) => {
   const [textInputTitle, onChangeTextInputTitle] = useState("");
@@ -29,7 +30,7 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
       }
     }) .then(({ data }) => {
       console.log(data);
-      UpdateInsertRelationToUser('JLEnItqWM8', `${data.objectId}`, 'r:2d2dce1b3ff9e49576aa52d404837671')
+      UpdateInsertRelationToUser(`${getStateUserObjectId()}`, `${data.objectId}`, `${getStateUserSessionToken()}`)
     }).catch(err => {
       console.log(err);
       setIsLoading(false);
