@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React from "react";
+import React, { useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Image, Platform, StyleSheet } from "react-native";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
@@ -14,6 +14,8 @@ const Tab = createBottomTabNavigator();
 const MainTabNavScreen = () => {
   const colorTheme = useThemeColor()
   const styleComponent = styles(colorTheme)
+
+
   return (
     <Tab.Navigator
       screenOptions={{

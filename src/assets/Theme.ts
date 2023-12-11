@@ -33,7 +33,9 @@ export const COLORS = {
   AccentLight: "#e2e3e5",
   SimpleBlack: "#000000",
   GrayAppSettingsDark: "#7E8A95",
-  BrandAccentLight: "#079B7F"
+  BrandAccentLight: "#079B7F",
+  DarkOcean: "#0575DD",
+  LightOcean: "#348BDC",
 };
 
 export const COLORSLight = {
@@ -46,7 +48,8 @@ export const COLORSLight = {
   RadioButtonActive: COLORS.SimpleBlack,
   RadioButtonUnchecked: COLORS.GrayAppSettingsDark,
   BaseReturnedSimple: COLORS.WhiteMain,
-  CardNote: COLORS.BrandAccentLight
+  CardNote: COLORS.BrandAccentLight,
+  Ocean: COLORS.DarkOcean,
 };
 
 export const COLORSDark = {
@@ -59,7 +62,8 @@ export const COLORSDark = {
   RadioButtonActive: COLORS.WhiteMain,
   RadioButtonUnchecked: COLORS.AccentLight,
   BaseReturnedSimple: COLORS.SimpleBlack,
-  CardNote: COLORS.HoneydewContrast
+  CardNote: COLORS.HoneydewContrast,
+  Ocean: COLORS.LightOcean,
 };
 
 export type UIColor = typeof COLORSLight | typeof COLORSDark

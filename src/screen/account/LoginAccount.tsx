@@ -10,7 +10,7 @@ import {
   View
 } from "react-native";
 import {UIColor, useThemeColor } from "../../assets/Theme";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Application_Id, REST_API_Key } from "../../../Keys";
 import {
@@ -22,8 +22,6 @@ import {
 
 
 export const LoginAccountScreen = ({ navigation }: any) => {
-
-
 
   const [textInputName, onChangeTextInputName] = useState("");
   const [textInputPassword, onChangeTextInputPassword] = useState("");
@@ -44,9 +42,11 @@ export const LoginAccountScreen = ({ navigation }: any) => {
     }
   };
 
-  if(getStateUserName() != null) {
-    navigation.push('tabNav', {overrideBackPress: true})
-  }
+  useEffect(() => {
+    if(getStateUserName() != null) {
+      navigation.replace('tabNav')
+    }
+  }, []);
 
 
   const singIn = () => {
@@ -67,7 +67,7 @@ export const LoginAccountScreen = ({ navigation }: any) => {
       saveStateUserName(data.username)
       saveStateUserObjectId(data.objectId)
       saveStateUserSessionToken(data.sessionToken)
-      navigation.navigate('tabNav')
+      navigation.replace('tabNav')
     }).catch(err => {
       console.log(err.response.status);
       if (err.response.status == "404") {
@@ -123,6 +123,17 @@ export const LoginAccountScreen = ({ navigation }: any) => {
         />
       </View>
 
+
+
+      <View style={styleComponent.viewTextCreateAccount}>
+
+        <Text style={styleComponent.textAccountNotClick}>Don't you have an account?</Text>
+        <TouchableOpacity style={{marginStart: 4}} onPress={() => {navigation.navigate('CreateAccount')}}>
+          <Text style={styleComponent.textAccountClick}>create now</Text>
+        </TouchableOpacity>
+
+      </View>
+
       <TouchableOpacity style={styleComponent.buttonSingIn} onPress={() => {
         if (checkInputData()) {
           singIn();
@@ -168,7 +179,7 @@ const styles = (color: UIColor) => StyleSheet.create({
     color: color.TextAssistant
   },
   buttonSingIn: {
-    marginTop: 24,
+    marginTop: 8,
     width: width - 64,
     flexDirection: "column",
     alignItems: "center",
@@ -181,5 +192,18 @@ const styles = (color: UIColor) => StyleSheet.create({
     color: color.TextAssistant,
     marginTop: 16,
     marginBottom: 16
+  },
+  viewTextCreateAccount: {
+    marginTop: 8,
+    marginBottom: 8,
+    flexDirection: 'row',
+  },
+  textAccountNotClick: {
+    fontSize: 16,
+    color: color.TextAssistant,
+  },
+  textAccountClick: {
+    fontSize: 16,
+    color: color.Ocean,
   }
 });
