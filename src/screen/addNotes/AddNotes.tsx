@@ -29,6 +29,7 @@ const AddNotesScreen = ({ navigation }: any) => {
         { id: 6, valueTitle: textInputTitle, valueSubTitle: textInputSubTitle, createData: currentData }
       ];
       await saveTodoItems(db, initTodos);
+      navigation.pop();
       console.log("very good");
     } catch (error) {
       console.log(error);

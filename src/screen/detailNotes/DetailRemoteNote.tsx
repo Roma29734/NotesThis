@@ -23,7 +23,6 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
     setCurrentDataTime(`${date}.${month}.${year}`)
   }, []);
 
-
   const updateNoteList = () => {
     setIsLoading(true);
     let data = JSON.stringify({
@@ -54,7 +53,19 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
   };
 
   const DeleteHandler = () => {
-    // deleteItem(transmittedTodoItem.id);
+    axios.delete(`https://parseapi.back4app.com/classes/noteList/${transmittedTodoItemRemote.objectId}`, {
+      headers: {
+        "X-Parse-Application-Id": Application_Id,
+        "X-Parse-REST-API-Key": REST_API_Key,
+        "Content-Type": "application/json"
+      }
+    }).then(() => {
+      console.log('delete success')
+    }).catch(err => {
+      console.log(`error in delete Item ${err}`)
+    }).finally(() => {
+      navigation.pop();
+    })
   };
 
   const checkInputData = (): boolean => {

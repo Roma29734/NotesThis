@@ -2,9 +2,7 @@ import React from "react";
 import { StyleSheet, Image, View } from "react-native";
 import { COLORS, UIColor, useThemeColor } from "../assets/Theme";
 
-// @ts-ignore
-const ImageBack = ({visible}) => {
-
+const ImageBack = ({visible}: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
@@ -41,6 +39,7 @@ const styles= (color: UIColor) => StyleSheet.create({
     margin: 16,
     borderRadius: 12,
     borderWidth: 2,
+    borderColor: color.Accent,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden"

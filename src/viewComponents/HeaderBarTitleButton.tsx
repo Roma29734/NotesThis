@@ -4,10 +4,8 @@ import React from "react";
 import ImageBack from "./ImageBack";
 import ImageDelete from "./ImageDelete";
 
-// @ts-ignore
-const HeaderBarTitleButton = ({ title, BackHandler, showDeleteItem, DeleteHandler }) => {
+const HeaderBarTitleButton = ({ title, BackHandler, showDeleteItem, DeleteHandler }: any) => {
 
-  // @ts-ignore
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);

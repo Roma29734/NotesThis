@@ -28,9 +28,9 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
         "X-Parse-REST-API-Key": REST_API_Key,
         "Content-Type": "application/json"
       }
-    }) .then(({ data }) => {
+    }).then(({ data }) => {
       console.log(data);
-      UpdateInsertRelationToUser(`${getStateUserObjectId()}`, `${data.objectId}`, `${getStateUserSessionToken()}`)
+      UpdateInsertRelationToUser(`${getStateUserObjectId()}`, `${data.objectId}`, `${getStateUserSessionToken()}`);
     }).catch(err => {
       console.log(err);
       setIsLoading(false);
@@ -39,7 +39,7 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
     );
   };
 
-  const UpdateInsertRelationToUser = (objectId: string, noteListId: string, sessionToken: string ) => {
+  const UpdateInsertRelationToUser = (objectId: string, noteListId: string, sessionToken: string) => {
     let data = JSON.stringify({
       "relation": {
         "__op": "AddRelation",
@@ -58,17 +58,18 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
         "X-Parse-Application-Id": Application_Id,
         "X-Parse-REST-API-Key": REST_API_Key,
         "Content-Type": "application/json",
-        "X-Parse-Session-Token": `${sessionToken}`,
+        "X-Parse-Session-Token": `${sessionToken}`
       }
-    }) .then(({ data }) => {
+    }).then(({ data }) => {
       console.log(data);
     }).catch(err => {
       console.log(err);
     }).finally(() => {
         setIsLoading(false);
+        navigation.pop();
       }
     );
-  }
+  };
 
   useEffect(() => {
     var date = new Date().getDate();
@@ -102,7 +103,8 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
       <HeaderBarTitleButton title={"add Note"} BackHandler={BackHandler} showDeleteItem={false} DeleteHandler={false} />
 
 
-      {isLoading && <ActivityIndicator size={"large"} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,}} />}
+      {isLoading &&
+        <ActivityIndicator size={"large"} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />}
 
       <TextInput style={styleComponent.inputTitle}
                  placeholder="Enter your title notes"
