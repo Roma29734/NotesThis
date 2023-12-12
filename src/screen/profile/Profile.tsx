@@ -23,34 +23,34 @@ const ProfileScreen = ({ navigation }: any) => {
 
   const showAlert = () =>
     Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
+      "Alert Title",
+      "My Alert Msg",
       [
         {
-          text: 'Cancel',
-          style: 'cancel',
+          text: "Cancel",
+          style: "cancel"
         },
         {
-          text: 'Yes',
-          style: 'default',
+          text: "Yes",
+          style: "default",
           onPress: () => {
             setLogOutAccState();
-          },
+          }
         }
       ],
       {
         cancelable: true,
         onDismiss: () =>
           Alert.alert(
-            'This alert was dismissed by tapping outside of the alert dialog.',
-          ),
-      },
+            "This alert was dismissed by tapping outside of the alert dialog."
+          )
+      }
     );
 
   const setLogOutAccState = () => {
     clearAppData();
-    navigation.replace('LoginAccount')
-  }
+    navigation.replace("LoginAccount");
+  };
 
   return (
     <SafeAreaView style={styleComponent.container}>
@@ -96,7 +96,7 @@ const { height, width } = Dimensions.get("window");
 const styles = (color: UIColor) => StyleSheet.create({
 
   container: {
-    backgroundColor: color.BackgroundMain, flex: 1
+    backgroundColor: color.BackgroundMain, flex: 1, marginBottom: 80
   },
   mainContainer: {
     alignSelf: "center",

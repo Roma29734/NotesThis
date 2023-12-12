@@ -92,7 +92,9 @@ const LocalScreen = ({ navigation }: any) => {
 const { height, width } = Dimensions.get("window");
 const styles = (color: UIColor) => StyleSheet.create({
   contrainer: {
-    backgroundColor: color.BackgroundMain
+    backgroundColor: color.BackgroundMain,
+    marginBottom: 80,
+    flex: 1,
   },
   buttonCreate: {
     width: 48,
@@ -111,7 +113,7 @@ const styles = (color: UIColor) => StyleSheet.create({
     alignItems: "center"
   },
   FlatListMain: {
-    height: height - 160
+    height: height
   }
 });
 

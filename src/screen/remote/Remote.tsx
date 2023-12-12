@@ -78,6 +78,8 @@ const RemoteScreen = ({ navigation }: any) => {
 const { height, width } = Dimensions.get("window");
 const styles = (color: UIColor) => StyleSheet.create({
   contrainer: {
+    flex: 1,
+    marginBottom: 80,
     backgroundColor: color.BackgroundMain
   },
   buttonCreate: {
@@ -97,7 +99,7 @@ const styles = (color: UIColor) => StyleSheet.create({
     alignItems: "center"
   },
   FlatListMain: {
-    height: height - 160
+    height: height
   },
   loadingAlert: {
     flex: 1,
