@@ -10,6 +10,10 @@ export const saveStateThemeAppData = (value: string) => {
   storage.set(themeAppKey, `${value}`)
 };
 
+export const clearAppData = () => {
+  storage.clearAll()
+}
+
 export const getStateThemeAppData = (): string => {
   try {
     const themeState = storage.getString(themeAppKey)

@@ -1,9 +1,9 @@
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import React from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
-import { getStateUserName } from "../../data/localData/MmkvStorageData";
+import { clearAppData, getStateUserName } from "../../data/localData/MmkvStorageData";
 
 const ProfileScreen = ({ navigation }: any) => {
 
@@ -17,8 +17,40 @@ const ProfileScreen = ({ navigation }: any) => {
 
   };
   const OutAccountTouchHandler = () => {
-
+    showAlert();
   };
+
+
+  const showAlert = () =>
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          style: 'default',
+          onPress: () => {
+            setLogOutAccState();
+          },
+        }
+      ],
+      {
+        cancelable: true,
+        onDismiss: () =>
+          Alert.alert(
+            'This alert was dismissed by tapping outside of the alert dialog.',
+          ),
+      },
+    );
+
+  const setLogOutAccState = () => {
+    clearAppData();
+    navigation.replace('LoginAccount')
+  }
 
   return (
     <SafeAreaView style={styleComponent.container}>
