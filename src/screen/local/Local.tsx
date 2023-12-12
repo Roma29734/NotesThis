@@ -2,10 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ToDoItem } from "../../data/model/ToDoItemModel";
 import { createTable, getDBConnection, getTodoItems, saveTodoItems } from "../../data/localData/LocalDataBase";
 import {
+  ActivityIndicator,
   Dimensions,
   FlatList,
   Image,
-  StyleSheet,
+  StyleSheet, Text,
   TouchableOpacity,
   View
 } from "react-native";
@@ -17,6 +18,7 @@ import itemKeeps from "../../viewComponents/ItemKeeps";
 
 const LocalScreen = ({ navigation }: any) => {
   const [todos, setTodos] = useState<ToDoItem[]>([]);
+  const [visibleIlustrToDo, setVisibleIlustrToDo] = useState(false);
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -25,32 +27,49 @@ const LocalScreen = ({ navigation }: any) => {
 
   const loadDataCallback = useCallback(async () => {
     try {
-      const initTodos = [
-        { id: 0, valueTitle: "go to shop", createData: "29.11.2023", valueSubTitle: "" },
-        { id: 1, valueTitle: "eat at least a one healthy foods", createData: "29.11.2023", valueSubTitle: "" },
-        { id: 2, valueTitle: "Do some exercises", createData: "29.11.2023", valueSubTitle: "" }
-      ];
       const db = await getDBConnection();
       await createTable(db);
       const storedTodoItems = await getTodoItems(db);
       if (storedTodoItems.length) {
+        setVisibleIlustrToDo(false);
         setTodos(storedTodoItems);
       } else {
-        await saveTodoItems(db, initTodos);
-        // @ts-ignore
-        setTodos(initTodos);
+        setVisibleIlustrToDo(true);
       }
     } catch (error) {
       console.error(error);
     }
   }, []);
 
-  const colorTheme = useThemeColor()
-  const styleComponent = styles(colorTheme)
+  const colorTheme = useThemeColor();
+  const styleComponent = styles(colorTheme);
 
   return (
     <View style={styleComponent.contrainer}>
       <HeaderBarSimpleTitle title={"Local Notes"} />
+
+
+      {visibleIlustrToDo
+        && <View
+          style={{
+            position: "absolute",
+            bottom: 0,
+            top: 0,
+            start: 0,
+            end: 0,
+            justifyContent: "center", alignItems: "center"
+          }}
+        >
+
+          <Image source={require("../../assets/image/add_note_ilustr_ico.png")}
+                 style={{ width: 100, height: 100, tintColor: colorTheme.TextAssistant }} />
+
+          <Text style={{color: colorTheme.TextAssistant}}>Create the first note, click on the + button</Text>
+
+        </View>
+
+      }
+
       <FlatList
         data={todos}
         style={styleComponent.FlatListMain}

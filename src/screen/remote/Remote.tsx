@@ -1,6 +1,6 @@
 import { ActivityIndicator, Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { getRelationUser } from "../../data/remoteData/RemoteQuery";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
@@ -14,11 +14,44 @@ const RemoteScreen = ({ navigation }: any) => {
   const isFocused = useIsFocused();
   // Insert the user token here
   const { items, isLoading } = getRelationUser(`${getStateUserObjectId()}`, isFocused);
+  const [visibleIlustrToDo, setVisibleIlustrToDo] = useState(false);
 
+  useEffect(() => {
+    // @ts-ignore
+    const itemsLength: number = Array.isArray(items) ? items.length : 0;
+    if(itemsLength === 0) {
+      setVisibleIlustrToDo(true);
+    } else {
+      setVisibleIlustrToDo(false);
+    }
+    console.log(itemsLength);
+  }, [items]);
 
   return (
     <View style={styleComponent.contrainer}>
       <HeaderBarSimpleTitle title={"Remote Notes"} />
+
+
+      {visibleIlustrToDo
+        && <View
+          style={{
+            position: "absolute",
+            bottom: 0,
+            top: 0,
+            start: 0,
+            end: 0,
+            justifyContent: "center", alignItems: "center"
+          }}
+        >
+
+          <Image source={require("../../assets/image/add_note_ilustr_ico.png")}
+                 style={{ width: 100, height: 100, tintColor: colorTheme.TextAssistant }} />
+
+          <Text style={{color: colorTheme.TextAssistant}}>Create the first note, click on the + button</Text>
+
+        </View>
+
+      }
 
       <FlatList
         data={items}
