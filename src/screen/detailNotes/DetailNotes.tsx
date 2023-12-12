@@ -83,14 +83,16 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
                  onChangeText={onChangeTextInputTitle}
                  value={textInputTitle} />
 
-      <TextInput editable
-                 multiline={true}
-                 numberOfLines={100}
-                 style={styleComponent.inputSupTitle}
-                 placeholder="Enter your title notes"
-                 onChangeText={onChangeTextInputSubTitle}
-                 value={textInputSubTitle} />
 
+      <View>
+        <TextInput editable
+                   multiline={true}
+                   style={styleComponent.inputSupTitle}
+                   placeholder="Enter your title notes"
+                   onChangeText={onChangeTextInputSubTitle}
+                   value={textInputSubTitle} />
+
+      </View>
       <TouchableOpacity style={styleComponent.buttonAdd} onPress={() => {
         if (checkInputData() == true) {
           updateTodo();

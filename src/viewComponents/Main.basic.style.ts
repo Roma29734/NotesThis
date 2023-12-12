@@ -35,15 +35,12 @@ const styles = (color: UIColor) => StyleSheet.create({
     color: color.TextAssistant,
   },
   inputSupTitle: {
-    maxHeight: width - 55 - 30,
-    borderWidth: 2,
-    borderColor: COLORS.BlackMain,
-    borderRadius: 16,
+    maxHeight: height - 255,
     marginStart: 16,
     marginEnd: 16,
     marginTop: 24,
     fontSize: 16,
-    color: COLORS.BlackMain,
+    color: color.TextAssistant,
   },
   buttonAdd: {
     width: width - 32,
@@ -82,6 +79,9 @@ const styles = (color: UIColor) => StyleSheet.create({
   },
   FlatListMain: {
     height: height - 150
+  },
+  ViewForInputSubTitle: {
+
   }
 });
 
