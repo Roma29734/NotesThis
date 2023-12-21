@@ -1,14 +1,19 @@
-import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import React from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
-import { clearAppData, getStateUserName } from "../../data/localData/MmkvStorageData";
+import { clearAppData, getStateUserName, getUserAvatarImage } from "../../data/localData/MmkvStorageData";
+import { requestLocationAccuracy } from "react-native-permissions";
+import * as url from "url";
+import { getPhotoInGallery } from "./PhotoImageLink";
 
 const ProfileScreen = ({ navigation }: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
+
+  const uriAvatarImageUser = getUserAvatarImage();
 
   const SetThemeTouchHandler = () => {
     navigation.navigate("NameThemeSettings");
@@ -58,19 +63,28 @@ const ProfileScreen = ({ navigation }: any) => {
       <View style={styleComponent.mainContainer}>
 
         <View style={styleComponent.viewImageContainer}>
-          <View style={{
+          <Image style={{
             width: 110,
             height: 110,
             borderRadius: 600,
             backgroundColor: COLORS.WhiteMain,
             borderColor: COLORS.BlackMain,
             borderWidth: 6
-          }}>
-          </View>
-          <Image
-            source={require("../../assets/image/ic_edit_profile.png")}
-            style={styleComponent.imageEditProfile}
+          }}
+          source={{uri: `${uriAvatarImageUser}`}}
           />
+          <TouchableOpacity style={{
+            position: "absolute",
+            bottom: 8,
+            end: 6
+          }} onPress={() => {
+            getPhotoInGallery();
+          }}>
+            <Image
+              source={require("../../assets/image/ic_edit_profile.png")}
+              style={styleComponent.imageEditProfile}
+            />
+          </TouchableOpacity>
         </View>
 
         <Text style={styleComponent.textName}>{getStateUserName()}</Text>
@@ -118,9 +132,9 @@ const styles = (color: UIColor) => StyleSheet.create({
   imageEditProfile: {
     width: 30,
     height: 30,
-    position: "absolute",
-    bottom: 8,
-    end: 6,
+    // position: "absolute",
+    // bottom: 8,
+    // end: 6,
     tintColor: color.SlideAppSettingsBackground
   },
   textName: {

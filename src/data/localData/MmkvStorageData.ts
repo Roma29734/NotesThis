@@ -1,121 +1,112 @@
 import { MMKV } from "react-native-mmkv";
+import Permissions from "react-native-permissions";
+import { launchImageLibrary} from "react-native-image-picker";
+
 export const storage = new MMKV();
 
-const themeAppKey = 'app-theme-state-key'
-const userNameKey = 'app-auth-user-name-key'
-const userObjectIdKey = 'app-auth-user-object-id-key'
-const userSessionTokenKey = 'app-auth-user-session-token-key'
+const themeAppKey = "app-theme-state-key";
+const userNameKey = "app-auth-user-name-key";
+const userObjectIdKey = "app-auth-user-object-id-key";
+const userSessionTokenKey = "app-auth-user-session-token-key";
+const userAvatarImageTokenKey = 'app-user-avatar-image-key'
 
 export const saveStateThemeAppData = (value: string) => {
-  storage.set(themeAppKey, `${value}`)
+  storage.set(themeAppKey, `${value}`);
 };
 
 export const clearAppData = () => {
-  storage.clearAll()
-}
+  storage.clearAll();
+};
 
 export const getStateThemeAppData = (): string => {
   try {
-    const themeState = storage.getString(themeAppKey)
-    if(themeState == undefined) {
-      return 'system';
-    } else  {
+    const themeState = storage.getString(themeAppKey);
+    if (themeState == undefined) {
+      return "system";
+    } else {
       return themeState;
     }
   } catch (e) {
-    console.log(`getStateThemeAppData error ${e}`)
-    return 'system';
+    console.log(`getStateThemeAppData error ${e}`);
+    return "system";
   }
-}
+};
 
 // From aut service
 
 // userName
 export const saveStateUserName = (userName: string) => {
-  storage.set(userNameKey, userName)
-}
+  storage.set(userNameKey, userName);
+};
 
 export const getStateUserName = (): string | null => {
   try {
-    const appAuthUserNameState = storage.getString(userNameKey)
-    if(appAuthUserNameState == undefined) {
-      return null
+    const appAuthUserNameState = storage.getString(userNameKey);
+    if (appAuthUserNameState == undefined) {
+      return null;
     } else {
-      return appAuthUserNameState
+      return appAuthUserNameState;
     }
   } catch (err) {
-    console.log(`getStateUserName ${err}`)
-    return null
+    console.log(`getStateUserName ${err}`);
+    return null;
   }
-}
+};
 
 // userObjectId
 
 export const saveStateUserObjectId = (userName: string) => {
-  storage.set(userObjectIdKey, userName)
-}
+  storage.set(userObjectIdKey, userName);
+};
 
 export const getStateUserObjectId = (): string | null => {
   try {
-    const appAuthUserNameState = storage.getString(userObjectIdKey)
-    if(appAuthUserNameState == undefined) {
-      return null
+    const appAuthUserNameState = storage.getString(userObjectIdKey);
+    if (appAuthUserNameState == undefined) {
+      return null;
     } else {
-      return appAuthUserNameState
+      return appAuthUserNameState;
     }
   } catch (err) {
-    console.log(`getStateUserObjectId ${err}`)
-    return null
+    console.log(`getStateUserObjectId ${err}`);
+    return null;
   }
-}
+};
 
 // userSessionToken
 export const saveStateUserSessionToken = (userName: string) => {
-  storage.set(userSessionTokenKey, userName)
-}
+  storage.set(userSessionTokenKey, userName);
+};
 
 export const getStateUserSessionToken = (): string | null => {
   try {
-    const appAuthUserNameState = storage.getString(userSessionTokenKey)
-    if(appAuthUserNameState == undefined) {
-      return null
+    const appAuthUserNameState = storage.getString(userSessionTokenKey);
+    if (appAuthUserNameState == undefined) {
+      return null;
     } else {
-      return appAuthUserNameState
+      return appAuthUserNameState;
     }
   } catch (err) {
-    console.log(`getStateUserSessionToken ${err}`)
-    return null
+    console.log(`getStateUserSessionToken ${err}`);
+    return null;
   }
-}
+};
 
+// userAvatarImage
+export const saveUserAvatarImage = (userAvatarUri: string) => {
+  storage.set(userAvatarImageTokenKey, userAvatarUri);
+};
 
-// Old version in asyncStorage
-
-// export const saveStateThemeAppData = async (value: string) => {
-//   try {
-//     await AsyncStorage.setItem("app-theme-state-key", value);
-//     console.log(`successfully added themeKey ${value}`)
-//   } catch (e) {
-//     console.log(`error in saveStateThemeAppData ${e} `);
-//   }
-// };
-//
-//
-// export const getStateThemeAppDataSync = (): string => {
-//   try {
-//     const value = AsyncStorage.getItem('app-theme-state-key');
-//     if (value != null) {
-//       // value previously stored
-//        value.then(code => {
-//         // @ts-ignore
-//          console.log(code)
-//          return code
-//       });
-//     } else  {
-//       return 'system';
-//     }
-//   } catch (e) {
-//     // error reading value
-//     return 'system';
-//   }
-// };
+export const getUserAvatarImage = (): string | null => {
+  try {
+    const userAvatarUri = storage.getString(userAvatarImageTokenKey);
+    if (userAvatarUri == undefined) {
+      return null;
+    } else {
+      return userAvatarUri;
+    }
+  } catch (err) {
+    console.log(`getStateUserSessionToken ${err}`);
+    return null;
+  }
+};
