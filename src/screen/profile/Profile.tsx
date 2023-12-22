@@ -1,19 +1,17 @@
 import { Alert, Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
 import { clearAppData, getStateUserName, getUserAvatarImage } from "../../data/localData/MmkvStorageData";
-import { requestLocationAccuracy } from "react-native-permissions";
-import * as url from "url";
 import { getPhotoInGallery } from "./PhotoImageLink";
 
 const ProfileScreen = ({ navigation }: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
+  const [imageAvatarToProfile, setImageAvatarToProfile] = useState(getUserAvatarImage());
 
-  const uriAvatarImageUser = getUserAvatarImage();
 
   const SetThemeTouchHandler = () => {
     navigation.navigate("NameThemeSettings");
@@ -57,28 +55,53 @@ const ProfileScreen = ({ navigation }: any) => {
     navigation.replace("LoginAccount");
   };
 
+  const onClickChangeEditProfileIc = () => {
+    console.log("onClickHandlerEnable")
+    setImageAvatarToProfile(getUserAvatarImage());
+  };
+
   return (
     <SafeAreaView style={styleComponent.container}>
       <HeaderBarSimpleTitle title={"Profile"} />
       <View style={styleComponent.mainContainer}>
 
         <View style={styleComponent.viewImageContainer}>
-          <Image style={{
-            width: 110,
-            height: 110,
-            borderRadius: 600,
-            backgroundColor: COLORS.WhiteMain,
-            borderColor: COLORS.BlackMain,
-            borderWidth: 6
-          }}
-          source={{uri: `${uriAvatarImageUser}`}}
-          />
+
+          {
+            imageAvatarToProfile == null ?
+              <Image style={{
+                width: 110,
+                height: 110,
+                borderRadius: 600,
+                borderColor: COLORS.BlackMain,
+                borderWidth: 6,
+                tintColor: colorTheme.TextAssistant
+              }}
+                     source={
+                       require("../../assets/image/ic_no_account.png")
+                     }
+              />
+              :
+              <Image style={{
+                width: 110,
+                height: 110,
+                borderRadius: 600,
+                backgroundColor: COLORS.WhiteMain,
+                borderColor: COLORS.BlackMain,
+                borderWidth: 6
+              }}
+                     source={
+                       { uri: `${imageAvatarToProfile}` }
+                     }
+              />
+          }
+
           <TouchableOpacity style={{
             position: "absolute",
             bottom: 8,
             end: 6
           }} onPress={() => {
-            getPhotoInGallery();
+            getPhotoInGallery(onClickChangeEditProfileIc);
           }}>
             <Image
               source={require("../../assets/image/ic_edit_profile.png")}
@@ -132,9 +155,6 @@ const styles = (color: UIColor) => StyleSheet.create({
   imageEditProfile: {
     width: 30,
     height: 30,
-    // position: "absolute",
-    // bottom: 8,
-    // end: 6,
     tintColor: color.SlideAppSettingsBackground
   },
   textName: {
