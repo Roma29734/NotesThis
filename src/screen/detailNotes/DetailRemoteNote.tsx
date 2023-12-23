@@ -48,12 +48,12 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
     );
   };
 
-  const BackHandler = () => {
+  const BackHandler = async () => {
     navigation.pop();
   };
 
-  const DeleteHandler = () => {
-    axios.delete(`https://parseapi.back4app.com/classes/noteList/${transmittedTodoItemRemote.objectId}`, {
+  const DeleteHandler = async () => {
+    await axios.delete(`https://parseapi.back4app.com/classes/noteList/${transmittedTodoItemRemote.objectId}`, {
       headers: {
         "X-Parse-Application-Id": Application_Id,
         "X-Parse-REST-API-Key": REST_API_Key,
@@ -64,7 +64,7 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
     }).catch(err => {
       console.log(`error in delete Item ${err}`)
     }).finally(() => {
-      navigation.pop();
+      BackHandler();
     })
   };
 

@@ -5,6 +5,7 @@ import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import AppSettingsItems from "../../viewComponents/AppSettingsItems";
 import { clearAppData, getStateUserName, getUserAvatarImage } from "../../data/localData/MmkvStorageData";
 import { getPhotoInGallery } from "./PhotoImageLink";
+import { deleteTable, getDBConnection } from "../../data/localData/LocalDataBase";
 
 const ProfileScreen = ({ navigation }: any) => {
 
@@ -20,14 +21,14 @@ const ProfileScreen = ({ navigation }: any) => {
 
   };
   const OutAccountTouchHandler = () => {
-    showAlert();
+    showAlertExitAccount();
   };
 
 
-  const showAlert = () =>
+  const showAlertExitAccount = () =>
     Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
+      "Exit account",
+      "Are you sure you want to get out",
       [
         {
           text: "Cancel",
@@ -50,8 +51,10 @@ const ProfileScreen = ({ navigation }: any) => {
       }
     );
 
-  const setLogOutAccState = () => {
+  const setLogOutAccState = async () => {
     clearAppData();
+    const db = await getDBConnection();
+    await deleteTable(db);
     navigation.replace("LoginAccount");
   };
 

@@ -52,11 +52,6 @@ export const saveTodoItems = async (db: SQLiteDatabase, todoItems: ToDoItem[]) =
   return db.executeSql(insertQuery);
 };
 
-// export const updateTodoItems = async (db: SQLiteDatabase, todoItems: ToDoItem[]) => {
-//     const updateQuery = `UPDATE ${tableName} SET (valueTitle, valueSubTitle) WHERE id` +
-//       todoItems.map(i => `('${i.valueTitle}', '${i.valueSubTitle}', '${i.id}')`).join(",");
-//     await db.executeSql(updateQuery);
-// }
 export const updateTodoItem = async (db: SQLiteDatabase, id: number, updatedValues: ToDoItem) => {
   const updateQuery = `UPDATE ${tableName} SET valueTitle = ?, valueSubTitle = ?, createData = ? WHERE rowid = ?`;
   const { valueTitle, valueSubTitle, createData } = updatedValues;
@@ -71,6 +66,5 @@ export const deleteTodoItem = async (db: SQLiteDatabase, id: number) => {
 
 export const deleteTable = async (db: SQLiteDatabase) => {
   const query = `drop table ${tableName}`;
-
   await db.executeSql(query);
 };
