@@ -19,6 +19,7 @@ export const getRelationUser = (objectId: string, isFocused: boolean) => {
           }
         })
       .then(({ data }) => {
+        console.log(`remoteQuer ${data.results}`)
         setResultItem(data.results);
       }).catch(err => {
       console.log(err);

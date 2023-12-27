@@ -32,9 +32,11 @@ const LocalScreen = ({ navigation }: any) => {
       const storedTodoItems = await getTodoItems(db);
       if (storedTodoItems.length) {
         setVisibleIlustrToDo(false);
+        console.log(`local notes ${storedTodoItems}`)
         setTodos(storedTodoItems);
       } else {
         setVisibleIlustrToDo(true);
+        setTodos(storedTodoItems);
       }
     } catch (error) {
       console.error(error);
