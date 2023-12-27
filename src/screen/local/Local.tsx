@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { ToDoItem } from "../../data/model/ToDoItemModel";
 import { createTable, getDBConnection, getTodoItems, saveTodoItems } from "../../data/localData/LocalDataBase";
 import {
-  ActivityIndicator,
   Dimensions,
   FlatList,
   Image,
@@ -14,7 +13,6 @@ import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { useIsFocused } from "@react-navigation/native";
-import itemKeeps from "../../viewComponents/ItemKeeps";
 
 const LocalScreen = ({ navigation }: any) => {
   const [todos, setTodos] = useState<ToDoItem[]>([]);
