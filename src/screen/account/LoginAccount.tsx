@@ -19,16 +19,16 @@ import {
   saveStateUserName,
   getStateUserName
 } from "../../data/localData/MmkvStorageData";
-
+import { useTranslation } from 'react-i18next';
 
 export const LoginAccountScreen = ({ navigation }: any) => {
 
   const [textInputName, onChangeTextInputName] = useState("");
   const [textInputPassword, onChangeTextInputPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
+  const { t } = useTranslation()
 
   const checkInputData = (): boolean => {
     if (!textInputName.trim()) {
@@ -47,7 +47,6 @@ export const LoginAccountScreen = ({ navigation }: any) => {
       navigation.replace('tabNav')
     }
   }, []);
-
 
   const singIn = () => {
     setIsLoading(true);
@@ -91,13 +90,13 @@ export const LoginAccountScreen = ({ navigation }: any) => {
     <SafeAreaView style={styleComponent.mainContainer}>
 
 
-      <Text style={styleComponent.textLogin}>Login</Text>
+      <Text style={styleComponent.textLogin}>{t('login_screen.login')}</Text>
 
       <View style={styleComponent.viewInput}>
         <TextInput
           value={textInputName}
           onChangeText={onChangeTextInputName}
-          placeholder="Type your name"
+          placeholder={t('login_screen.type_your_name')}
           style={styleComponent.textInput}
           maxLength={15}
           onSubmitEditing={() => { // @ts-ignore
@@ -113,7 +112,7 @@ export const LoginAccountScreen = ({ navigation }: any) => {
         <TextInput
           value={textInputPassword}
           onChangeText={onChangeTextInputPassword}
-          placeholder="Type your password"
+          placeholder={t('login_screen.type_your_password')}
           style={styleComponent.textInput}
           ref={(input) => { // @ts-ignore
             this.passwordTextInput = input;
@@ -127,9 +126,9 @@ export const LoginAccountScreen = ({ navigation }: any) => {
 
       <View style={styleComponent.viewTextCreateAccount}>
 
-        <Text style={styleComponent.textAccountNotClick}>Don't you have an account?</Text>
+        <Text style={styleComponent.textAccountNotClick}>{t('login_screen.did_have_acc')}</Text>
         <TouchableOpacity style={{marginStart: 4}} onPress={() => {navigation.navigate('CreateAccount')}}>
-          <Text style={styleComponent.textAccountClick}>create now</Text>
+          <Text style={styleComponent.textAccountClick}>{t('login_screen.create_now')}</Text>
         </TouchableOpacity>
 
       </View>
@@ -142,7 +141,7 @@ export const LoginAccountScreen = ({ navigation }: any) => {
         }
 
       }}>
-        <Text style={styleComponent.textButtonSingIn}>Sing in</Text>
+        <Text style={styleComponent.textButtonSingIn}>{t('login_screen.sing_in')}</Text>
       </TouchableOpacity>
 
 

@@ -1,3 +1,17 @@
 {
-  "hello": "Hello!"
+  "hello": "Hello!",
+  "login_screen": {
+    "login": "Inicio de sesión",
+    "type_your_name": "Escriba su nombre",
+    "type_your_password": "Escriba su contraseña",
+    "did_have_acc": "¿No tienes una cuenta?",
+    "create_now": "crear ahora",
+    "sing_in": "Canta en"
+  },
+  "create_ac_screen": {
+    "create_an_account": "Create an Account",
+    "type_your_name": "Type your name",
+    "type_your_password": "Type your password",
+    "create_account": "Create account"
+  }
 }

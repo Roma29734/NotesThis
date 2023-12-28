@@ -1,3 +1,17 @@
 {
-  "hello": "Hello!"
+  "hello": "Hello!",
+  "login_screen": {
+    "login": "Login",
+    "type_your_name": "Type your name",
+    "type_your_password": "Type your password",
+    "did_have_acc": "Don't you have an account?",
+    "create_now": "create now",
+    "sing_in": "Sing in"
+  },
+  "create_ac_screen": {
+    "create_an_account": "Create an Account",
+    "type_your_name": "Type your name",
+    "type_your_password": "Type your password",
+    "create_account": "Create account"
+  }
 }

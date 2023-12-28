@@ -1,3 +1,17 @@
 {
-  "hello": "Hello!"
+  "hello": "Hello!",
+  "login_screen": {
+    "login": "Вход",
+    "type_your_name": "Введите свое имя",
+    "type_your_password": "Введите пароль",
+    "did_have_acc": "У вас нет аккаунта?",
+    "create_now": "создайте сейчас",
+    "sing_in": "Войти"
+  },
+  "create_ac_screen": {
+    "create_an_account": "Создать учетную запись",
+    "type_your_name": "Введите свое имя",
+    "type_your_password": "Введите пароль",
+    "create_account": "Создать аккаунт"
+  }
 }

@@ -19,15 +19,15 @@ import {
   saveStateUserSessionToken
 } from "../../data/localData/MmkvStorageData";
 import ImageBack from "../../viewComponents/ImageBack";
-
+import { useTranslation } from 'react-i18next';
 
 export const CreateAccountScreen  = ({ navigation }: any) => {
   const [textInputName, onChangeTextInputName] = useState("");
   const [textInputPassword, onChangeTextInputPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
+  const { t } = useTranslation()
 
 
   const checkInputData = (): boolean => {
@@ -85,7 +85,7 @@ export const CreateAccountScreen  = ({ navigation }: any) => {
       </TouchableOpacity>
 
 
-      <Text style={styleComponent.textLogin}>Create an Account</Text>
+      <Text style={styleComponent.textLogin}>{t('create_ac_screen.create_an_account')}</Text>
 
       <View style={styleComponent.viewContainerLogin}>
 
@@ -93,7 +93,7 @@ export const CreateAccountScreen  = ({ navigation }: any) => {
           <TextInput
             value={textInputName}
             onChangeText={onChangeTextInputName}
-            placeholder="Type your name"
+            placeholder={t('create_ac_screen.type_your_name')}
             style={styleComponent.textInput}
             maxLength={15}
             onSubmitEditing={() => { // @ts-ignore
@@ -108,7 +108,7 @@ export const CreateAccountScreen  = ({ navigation }: any) => {
           <TextInput
             value={textInputPassword}
             onChangeText={onChangeTextInputPassword}
-            placeholder="Type your password"
+            placeholder={t('create_ac_screen.type_your_password')}
             style={styleComponent.textInput}
             ref={(input) => { // @ts-ignore
               this.passwordTextInput = input;
@@ -126,7 +126,7 @@ export const CreateAccountScreen  = ({ navigation }: any) => {
           }
 
         }}>
-          <Text style={styleComponent.textButtonSingIn}>Create account</Text>
+          <Text style={styleComponent.textButtonSingIn}>{t('create_ac_screen.create_account')}</Text>
         </TouchableOpacity>
       </View>
 
