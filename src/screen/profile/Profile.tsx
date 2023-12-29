@@ -6,13 +6,14 @@ import AppSettingsItems from "../../viewComponents/AppSettingsItems";
 import { clearAppData, getStateUserName, getUserAvatarImage } from "../../data/localData/MmkvStorageData";
 import { getPhotoInGallery } from "./PhotoImageLink";
 import { deleteTable, getDBConnection } from "../../data/localData/LocalDataBase";
+import { useTranslation } from "react-i18next";
 
 const ProfileScreen = ({ navigation }: any) => {
 
   const colorTheme = useThemeColor();
   const styleComponent = styles(colorTheme);
   const [imageAvatarToProfile, setImageAvatarToProfile] = useState(getUserAvatarImage());
-
+  const { t } = useTranslation();
 
   const SetThemeTouchHandler = () => {
     navigation.navigate("NameThemeSettings");
@@ -27,15 +28,15 @@ const ProfileScreen = ({ navigation }: any) => {
 
   const showAlertExitAccount = () =>
     Alert.alert(
-      "Exit account",
-      "Are you sure you want to get out",
+      t("alert.exit_acc.title"),
+      t("alert.exit_acc.message"),
       [
         {
-          text: "Cancel",
+          text: t("alert.exit_acc.button_cancel"),
           style: "cancel"
         },
         {
-          text: "Yes",
+          text: t("alert.exit_acc.button_yes"),
           style: "default",
           onPress: () => {
             setLogOutAccState();
@@ -43,11 +44,7 @@ const ProfileScreen = ({ navigation }: any) => {
         }
       ],
       {
-        cancelable: true,
-        onDismiss: () =>
-          Alert.alert(
-            "This alert was dismissed by tapping outside of the alert dialog."
-          )
+        cancelable: true
       }
     );
 
@@ -59,13 +56,13 @@ const ProfileScreen = ({ navigation }: any) => {
   };
 
   const onClickChangeEditProfileIc = () => {
-    console.log("onClickHandlerEnable")
+    console.log("onClickHandlerEnable");
     setImageAvatarToProfile(getUserAvatarImage());
   };
 
   return (
     <SafeAreaView style={styleComponent.container}>
-      <HeaderBarSimpleTitle title={"Profile"} />
+      <HeaderBarSimpleTitle title={t("profile_screen.profile")} />
       <View style={styleComponent.mainContainer}>
 
         <View style={styleComponent.viewImageContainer}>
@@ -118,13 +115,13 @@ const ProfileScreen = ({ navigation }: any) => {
 
       <View style={styleComponent.viewCardAppSettings}>
 
-        <Text style={styleComponent.textAppSettings}>App Settings</Text>
+        <Text style={styleComponent.textAppSettings}>{t("profile_screen.app_settings")}</Text>
 
-        <AppSettingsItems nameItem={"Set Theme"} locationImage={require("../../assets/image/ic_theme.png")}
+        <AppSettingsItems nameItem={t("profile_screen.set_theme")} locationImage={require("../../assets/image/ic_theme.png")}
                           TouchHandler={SetThemeTouchHandler} />
-        <AppSettingsItems nameItem={"Change Language"} locationImage={require("../../assets/image/ic_language.png")}
+        <AppSettingsItems nameItem={t("profile_screen.change_lan")} locationImage={require("../../assets/image/ic_language.png")}
                           TouchHandler={ChangeLanguageTouchHandler} />
-        <AppSettingsItems nameItem={"Out Account"} locationImage={require("../../assets/image/ic_exit_account.png")}
+        <AppSettingsItems nameItem={t("profile_screen.out_acc")} locationImage={require("../../assets/image/ic_exit_account.png")}
                           TouchHandler={OutAccountTouchHandler} />
 
       </View>

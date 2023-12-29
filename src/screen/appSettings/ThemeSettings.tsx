@@ -4,12 +4,12 @@ import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import React, { useEffect } from "react";
 import { RadioButton } from "react-native-paper";
 import {getStateThemeAppData, saveStateThemeAppData} from '../../data/localData/MmkvStorageData'
-
+import { useTranslation } from "react-i18next";
 
 const ThemeSettingsScreen = ({ navigation }: any) => {
 
   const [checked, setChecked] = React.useState(getStateThemeAppData());
-
+  const { t } = useTranslation();
   const BackHandler = () => {
     navigation.pop();
   };
@@ -23,7 +23,7 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={styleComponent.container}>
-      <HeaderBarTitleButton title={"Set Theme"} BackHandler={BackHandler} showDeleteItem={false}
+      <HeaderBarTitleButton title={t("profile_screen.set_theme")} BackHandler={BackHandler} showDeleteItem={false}
                             DeleteHandler={DeleteHandler} />
 
       <View style={styleComponent.mainContainer}>

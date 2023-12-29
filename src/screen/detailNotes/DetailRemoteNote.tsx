@@ -5,6 +5,7 @@ import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import { useThemeColor } from "../../assets/Theme";
 import axios from "axios";
 import { Application_Id, REST_API_Key } from "../../../Keys";
+import { useTranslation } from "react-i18next";
 
 export const DetailRemoteNote = ({ route, navigation }: any) => {
 
@@ -14,6 +15,7 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
   const [textInputSubTitle, onChangeTextInputSubTitle] = useState(transmittedTodoItemRemote.subTitle);
   const [currentDataTime, setCurrentDataTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     var date = new Date().getDate()
@@ -86,14 +88,14 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
   return (
     <View style={styleComponent.contrainer}>
 
-      <HeaderBarTitleButton title={"Yours Note"} BackHandler={BackHandler} showDeleteItem={true}
+      <HeaderBarTitleButton title={t("detail_note_screen.yours_note")} BackHandler={BackHandler} showDeleteItem={true}
                             DeleteHandler={DeleteHandler} />
 
 
       {isLoading && <ActivityIndicator size={"large"} style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,}} />}
 
       <TextInput style={styleComponent.inputTitle}
-                 placeholder="Enter your title notes"
+                 placeholder={t("detail_note_screen.enter_title")}
                  onChangeText={onChangeTextInputTitle}
                  value={textInputTitle} />
 
@@ -101,7 +103,7 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
         <TextInput editable
                    multiline={true}
                    style={styleComponent.inputSupTitle}
-                   placeholder="Enter your title notes"
+                   placeholder={t("detail_note_screen.enter_sub_title_notes")}
                    onChangeText={onChangeTextInputSubTitle}
                    value={textInputSubTitle} />
 
@@ -111,10 +113,10 @@ export const DetailRemoteNote = ({ route, navigation }: any) => {
         if (checkInputData() == true) {
           updateNoteList();
         } else {
-          Alert.alert("Unable to update a note", "Fill in all the fields to update a note");
+          Alert.alert(t("alert.note.unable_to_update_note.title"), t("alert.note.unable_to_update_note.message"));
         }
       }}>
-        <Text style={styleComponent.textFromButtonAdd}>Update</Text>
+        <Text style={styleComponent.textFromButtonAdd}>{t("detail_note_screen.update")}</Text>
       </TouchableOpacity>
 
     </View>

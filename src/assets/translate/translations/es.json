@@ -1,5 +1,23 @@
 {
   "hello": "Hello!",
+  "alert": {
+    "exit_acc": {
+      "title": "Exit account",
+      "message": "Are you sure you want to get out",
+      "button_cancel": "Cancel",
+      "button_yes": "Yes"
+    },
+    "note": {
+      "unable_to_update_note": {
+        "title": "Unable to update a note",
+        "message": "Fill in all the fields to update a note"
+      },
+      "unable_to_create_note": {
+        "title": "Unable to create a note",
+        "message": "Fill in all the fields to create a note"
+      }
+    }
+  },
   "login_screen": {
     "login": "Inicio de sesión",
     "type_your_name": "Escriba su nombre",
@@ -13,5 +31,32 @@
     "type_your_name": "Type your name",
     "type_your_password": "Type your password",
     "create_account": "Create account"
+  },
+  "local_not_screen": {
+    "local_notes": "Local Notes",
+    "empty_note": "Create the first note, click on the + button"
+  },
+  "remote_not_screen": {
+    "remote_notes": "Remote Notes",
+    "empty_note": "Create the first note, click on the + button"
+  },
+  "profile_screen": {
+    "profile": "Profile",
+    "app_settings": "App Settings",
+    "set_theme": "Set Theme",
+    "change_lan": "Change Language",
+    "out_acc": "Out Account"
+  },
+  "add_note_screen": {
+    "add_note": "add Note",
+    "enter_title": "Enter your title notes",
+    "enter_sub_title_notes": "Enter your sub title notes",
+    "add": "Add"
+  },
+  "detail_note_screen": {
+    "yours_note": "Yours Note",
+    "enter_title": "Enter your title notes",
+    "enter_sub_title_notes": "Enter your sub title notes",
+    "update": "Update"
   }
 }

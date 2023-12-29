@@ -1,5 +1,23 @@
 {
   "hello": "Hello!",
+  "alert": {
+    "exit_acc": {
+      "title": "Выйти из аккаунт",
+      "message": "Вы уверены, что хотите выйти",
+      "button_cancel": "Отмена",
+      "button_yes": "Да"
+    },
+    "note": {
+      "unable_to_update_note": {
+        "title": "Невозможно обновить заметку",
+        "message": "Заполните все поля, чтобы обновить заметку"
+      },
+      "unable_to_create_note": {
+        "title": "Невозможно создать заметку",
+        "message": "Заполните все поля, чтобы создать заметку"
+      }
+    }
+  },
   "login_screen": {
     "login": "Вход",
     "type_your_name": "Введите свое имя",
@@ -13,5 +31,32 @@
     "type_your_name": "Введите свое имя",
     "type_your_password": "Введите пароль",
     "create_account": "Создать аккаунт"
+  },
+  "local_not_screen": {
+    "local_notes": "Локальные заметки",
+    "empty_note": "Создайте первую заметку, нажмите на кнопку +."
+  },
+  "remote_not_screen": {
+    "remote_notes": "Дистанционные заметки",
+    "empty_note": "Создайте первую заметку, нажмите на кнопку +."
+  },
+  "profile_screen": {
+    "profile": "Профиль",
+    "app_settings": "Системные Настройки",
+    "set_theme": "Сменить Тему",
+    "change_lan": "Сменить Язык",
+    "out_acc": "Выйти из Аккаунта"
+  },
+  "add_note_screen": {
+    "add_note": "Добавить заметку",
+    "enter_title": "Укажите название для заметок",
+    "enter_sub_title_notes": "Введите название подзаголовка для заметок",
+    "add": "Добавить"
+  },
+  "detail_note_screen": {
+    "yours_note": "Ваша заметка",
+    "enter_title": "Укажите название для заметок",
+    "enter_sub_title_notes": "Введите название подзаголовка для заметок",
+    "update": "Обновить"
   }
 }

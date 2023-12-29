@@ -4,6 +4,7 @@ import Style from "../../viewComponents/Main.basic.style";
 import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import { deleteTodoItem, getDBConnection, updateTodoItem } from "../../data/localData/LocalDataBase";
 import { useThemeColor } from "../../assets/Theme";
+import { useTranslation } from "react-i18next";
 
 const DetailNotesScreen = ({ route, navigation }: any) => {
 
@@ -12,6 +13,7 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
   const [textInputTitle, onChangeTextInputTitle] = useState(transmittedTodoItem.valueTitle);
   const [textInputSubTitle, onChangeTextInputSubTitle] = useState(transmittedTodoItem.valueSubTitle);
   const [currentData, setCurrentData] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     var date = new Date().getDate()
@@ -75,11 +77,11 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
   return (
     <View style={styleComponent.contrainer}>
 
-      <HeaderBarTitleButton title={"Yours Note"} BackHandler={BackHandler} showDeleteItem={true}
+      <HeaderBarTitleButton title={t("detail_note_screen.yours_note")} BackHandler={BackHandler} showDeleteItem={true}
                             DeleteHandler={DeleteHandler} />
 
       <TextInput style={styleComponent.inputTitle}
-                 placeholder="Enter your title notes"
+                 placeholder={t("detail_note_screen.enter_title")}
                  onChangeText={onChangeTextInputTitle}
                  value={textInputTitle} />
 
@@ -88,7 +90,7 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
         <TextInput editable
                    multiline={true}
                    style={styleComponent.inputSupTitle}
-                   placeholder="Enter your title notes"
+                   placeholder={t("detail_note_screen.enter_sub_title_notes")}
                    onChangeText={onChangeTextInputSubTitle}
                    value={textInputSubTitle} />
 
@@ -97,10 +99,10 @@ const DetailNotesScreen = ({ route, navigation }: any) => {
         if (checkInputData() == true) {
           updateTodo();
         } else {
-          Alert.alert("Unable to update a note", "Fill in all the fields to update a note");
+          Alert.alert(t("alert.note.unable_to_update_note.title"), t("alert.note.unable_to_update_note.message"));
         }
       }}>
-        <Text style={styleComponent.textFromButtonAdd}>Update</Text>
+        <Text style={styleComponent.textFromButtonAdd}>{t("detail_note_screen.update")}</Text>
       </TouchableOpacity>
 
     </View>

@@ -5,14 +5,15 @@ import HeaderBarTitleButton from "../../viewComponents/HeaderBarTitleButton";
 import React, { useCallback, useEffect, useState } from "react";
 import { Application_Id, REST_API_Key } from "../../../Keys";
 import axios from "axios/index";
-import { insertRelationToUser } from "../../data/remoteData/RemoteQuery";
 import { getStateUserObjectId, getStateUserSessionToken } from "../../data/localData/MmkvStorageData";
+import { useTranslation } from "react-i18next";
 
 export const AddRemoteNoteScreen = ({ navigation }: any) => {
   const [textInputTitle, onChangeTextInputTitle] = useState("");
   const [textInputSubTitle, onChangeTextInputSubTitle] = useState("");
   const [currentData, setCurrentData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   const insertRelationToNoteList = (title: string, subTitle: string, createData: string) => {
     setIsLoading(true);
@@ -100,14 +101,14 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
   return (
     <View style={styleComponent.contrainer}>
 
-      <HeaderBarTitleButton title={"add Note"} BackHandler={BackHandler} showDeleteItem={false} DeleteHandler={false} />
+      <HeaderBarTitleButton title={t("add_note_screen.add_note")} BackHandler={BackHandler} showDeleteItem={false} DeleteHandler={false} />
 
 
       {isLoading &&
         <ActivityIndicator size={"large"} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }} />}
 
       <TextInput style={styleComponent.inputTitle}
-                 placeholder="Enter your title notes"
+                 placeholder={t("add_note_screen.enter_title")}
                  onChangeText={onChangeTextInputTitle}
                  value={textInputTitle} />
 
@@ -115,20 +116,19 @@ export const AddRemoteNoteScreen = ({ navigation }: any) => {
         <TextInput editable
                    multiline={true}
                    style={styleComponent.inputSupTitle}
-                   placeholder="Enter your title notes"
+                   placeholder={t("add_note_screen.enter_sub_title_notes")}
                    onChangeText={onChangeTextInputSubTitle}
                    value={textInputSubTitle} />
-
       </View>
 
       <TouchableOpacity style={styleComponent.buttonAdd} onPress={() => {
         if (checkInputData() == true) {
           insertRelationToNoteList(`${textInputTitle}`, `${textInputSubTitle}`, `${currentData}`);
         } else {
-          Alert.alert("Unable to create a note", "Fill in all the fields to create a note");
+          Alert.alert(t("alert.note.unable_to_create_note.title"), t("alert.note.unable_to_create_note.message"));
         }
       }}>
-        <Text style={styleComponent.textFromButtonAdd}>Add</Text>
+        <Text style={styleComponent.textFromButtonAdd}>{t("add_note_screen.add")}</Text>
       </TouchableOpacity>
     </View>
   );

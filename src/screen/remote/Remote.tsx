@@ -6,6 +6,7 @@ import { getRelationUser } from "../../data/remoteData/RemoteQuery";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
 import { useIsFocused } from "@react-navigation/native";
 import { getStateUserObjectId } from "../../data/localData/MmkvStorageData";
+import { useTranslation } from 'react-i18next';
 
 const RemoteScreen = ({ navigation }: any) => {
 
@@ -15,6 +16,7 @@ const RemoteScreen = ({ navigation }: any) => {
   // Insert the user token here
   const { items, isLoading } = getRelationUser(`${getStateUserObjectId()}`, isFocused);
   const [visibleIlustrToDo, setVisibleIlustrToDo] = useState(false);
+  const { t } = useTranslation()
 
   useEffect(() => {
     // @ts-ignore
@@ -29,7 +31,7 @@ const RemoteScreen = ({ navigation }: any) => {
 
   return (
     <View style={styleComponent.contrainer}>
-      <HeaderBarSimpleTitle title={"Remote Notes"} />
+      <HeaderBarSimpleTitle title={t("remote_not_screen.remote_notes")} />
 
 
       {visibleIlustrToDo
@@ -47,7 +49,7 @@ const RemoteScreen = ({ navigation }: any) => {
           <Image source={require("../../assets/image/add_note_ilustr_ico.png")}
                  style={{ width: 100, height: 100, tintColor: colorTheme.TextAssistant }} />
 
-          <Text style={{color: colorTheme.TextAssistant}}>Create the first note, click on the + button</Text>
+          <Text style={{color: colorTheme.TextAssistant}}>{t("remote_not_screen.empty_note")}</Text>
 
         </View>
 

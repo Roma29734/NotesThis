@@ -13,11 +13,13 @@ import HeaderBarSimpleTitle from "../../viewComponents/HeaderBarSimpleTitle";
 import ItemKeeps from "../../viewComponents/ItemKeeps";
 import { COLORS, UIColor, useThemeColor } from "../../assets/Theme";
 import { useIsFocused } from "@react-navigation/native";
+import { useTranslation } from 'react-i18next';
 
 const LocalScreen = ({ navigation }: any) => {
   const [todos, setTodos] = useState<ToDoItem[]>([]);
   const [visibleIlustrToDo, setVisibleIlustrToDo] = useState(false);
   const isFocused = useIsFocused();
+  const { t } = useTranslation()
 
   useEffect(() => {
     loadDataCallback();
@@ -46,7 +48,7 @@ const LocalScreen = ({ navigation }: any) => {
 
   return (
     <View style={styleComponent.contrainer}>
-      <HeaderBarSimpleTitle title={"Local Notes"} />
+      <HeaderBarSimpleTitle title={t("local_not_screen.local_notes")} />
 
 
       {visibleIlustrToDo
@@ -64,7 +66,7 @@ const LocalScreen = ({ navigation }: any) => {
           <Image source={require("../../assets/image/add_note_ilustr_ico.png")}
                  style={{ width: 100, height: 100, tintColor: colorTheme.TextAssistant }} />
 
-          <Text style={{color: colorTheme.TextAssistant}}>Create the first note, click on the + button</Text>
+          <Text style={{color: colorTheme.TextAssistant}}>{t("local_not_screen.empty_note")}</Text>
 
         </View>
 
