@@ -10,11 +10,16 @@
 * ##### typeScript
 * ##### axios
 * ##### sqlite
+* ##### react-i18next
 
-### Download last version apk [here](https://t.me/apkPublicPrograms/21)
+#### This app works in three languages: 
+* Español 
+* English 
+* Русский
+
+### Download last version apk [here](https://t.me/apkPublicPrograms/23)
 
 #### You can follow the development of this project [here](https://t.me/apkPublicPrograms)
-
 
 ### You can start the project using the following steps:
 ### Step 1: Start the Metro Server
