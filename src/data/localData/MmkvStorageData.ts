@@ -9,6 +9,7 @@ const userNameKey = "app-auth-user-name-key";
 const userObjectIdKey = "app-auth-user-object-id-key";
 const userSessionTokenKey = "app-auth-user-session-token-key";
 const userAvatarImageTokenKey = 'app-user-avatar-image-key'
+const languageAppKey = "app-language-state-key";
 
 export const saveStateThemeAppData = (value: string) => {
   storage.set(themeAppKey, `${value}`);
@@ -107,6 +108,26 @@ export const getUserAvatarImage = (): string | null => {
     }
   } catch (err) {
     console.log(`getStateUserSessionToken ${err}`);
+    return null;
+  }
+};
+
+
+// userAvatarImage
+export const saveLanguageState = (languageState: string) => {
+  storage.set(languageAppKey, languageState);
+};
+
+export const getLanguageState = (): string | null => {
+  try {
+    const languageState = storage.getString(languageAppKey);
+    if (languageState == undefined) {
+      return null;
+    } else {
+      return languageState;
+    }
+  } catch (err) {
+    console.log(`getLanguageState ${err}`);
     return null;
   }
 };

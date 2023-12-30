@@ -45,7 +45,11 @@
     "app_settings": "Системные Настройки",
     "set_theme": "Сменить Тему",
     "change_lan": "Сменить Язык",
-    "out_acc": "Выйти из Аккаунта"
+    "out_acc": "Выйти из Аккаунта",
+    "choose_language": "Выберите Язык",
+    "russian": "Русский",
+    "spanish": "Испанский",
+    "english": "Английский"
   },
   "add_note_screen": {
     "add_note": "Добавить заметку",

@@ -11,8 +11,9 @@ import { DetailRemoteNote } from "./src/screen/detailNotes/DetailRemoteNote";
 import { AddRemoteNoteScreen } from "./src/screen/addNotes/AddRemoteNote";
 import { LoginAccountScreen } from "./src/screen/account/LoginAccount";
 import { CreateAccountScreen } from "./src/screen/account/CreateAccount";
-import i18n from './src/assets/translate/i18n';
+import i18n from "./src/assets/translate/i18n";
 import { I18nextProvider } from "react-i18next";
+import { ChangeLanguageScreen } from "./src/screen/appSettings/ChangeLanguage";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,8 +38,12 @@ function App() {
             <Stack.Screen name="DetailNotes" component={DetailNotes}
                           options={{ headerShown: false, animation: "simple_push" }} />
             <Stack.Screen name="NameThemeSettings" component={ThemeSettings} options={{ headerShown: false }} />
-            <Stack.Screen name="DetailRemoteNote" component={DetailRemoteNote} options={{ headerShown: false, animation: 'simple_push' }} />
-            <Stack.Screen name="AddRemoteNote" component={AddRemoteNoteScreen} options={{ headerShown: false, animation: 'simple_push' }} />
+            <Stack.Screen name="DetailRemoteNote" component={DetailRemoteNote}
+                          options={{ headerShown: false, animation: "simple_push" }} />
+            <Stack.Screen name="AddRemoteNote" component={AddRemoteNoteScreen}
+                          options={{ headerShown: false, animation: "simple_push" }} />
+            <Stack.Screen name="ChangeLanguage" component={ChangeLanguageScreen}
+                          options={{ headerShown: false, animation: "simple_push" }} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

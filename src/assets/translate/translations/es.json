@@ -2,19 +2,19 @@
   "hello": "Hello!",
   "alert": {
     "exit_acc": {
-      "title": "Exit account",
-      "message": "Are you sure you want to get out",
-      "button_cancel": "Cancel",
-      "button_yes": "Yes"
+      "title": "Salir de la cuenta",
+      "message": "¿Estás seguro de que quieres salir",
+      "button_cancel": "Cancelar",
+      "button_yes": "Sí"
     },
     "note": {
       "unable_to_update_note": {
-        "title": "Unable to update a note",
-        "message": "Fill in all the fields to update a note"
+        "title": "No se puede actualizar una nota",
+        "message": "Rellene todos los campos para actualizar una nota"
       },
       "unable_to_create_note": {
-        "title": "Unable to create a note",
-        "message": "Fill in all the fields to create a note"
+        "title": "No se puede crear una nota",
+        "message": "Rellene todos los campos para crear una nota"
       }
     }
   },
@@ -27,36 +27,40 @@
     "sing_in": "Canta en"
   },
   "create_ac_screen": {
-    "create_an_account": "Create an Account",
-    "type_your_name": "Type your name",
-    "type_your_password": "Type your password",
-    "create_account": "Create account"
+    "create_an_account": "Crear una cuenta",
+    "type_your_name": "Escriba su nombre",
+    "type_your_password": "Escriba su contraseña",
+    "create_account": "Crear una cuenta"
   },
   "local_not_screen": {
-    "local_notes": "Local Notes",
-    "empty_note": "Create the first note, click on the + button"
+    "local_notes": "Notas locales",
+    "empty_note": "Cree la primera nota, haga clic en el botón +."
   },
   "remote_not_screen": {
-    "remote_notes": "Remote Notes",
-    "empty_note": "Create the first note, click on the + button"
+    "remote_notes": "Notas remotas",
+    "empty_note": "Cree la primera nota, haga clic en el botón +."
   },
   "profile_screen": {
-    "profile": "Profile",
-    "app_settings": "App Settings",
-    "set_theme": "Set Theme",
-    "change_lan": "Change Language",
-    "out_acc": "Out Account"
+    "profile": "Perfil",
+    "app_settings": "Configuración de la aplicación",
+    "set_theme": "Tema del set",
+    "change_lan": "Cambiar idioma",
+    "out_acc": "Cuenta de salida",
+    "choose_language": "Elegir idioma",
+    "russian": "Ruso",
+    "spanish": "Español",
+    "english": "Inglés"
   },
   "add_note_screen": {
-    "add_note": "add Note",
-    "enter_title": "Enter your title notes",
-    "enter_sub_title_notes": "Enter your sub title notes",
-    "add": "Add"
+    "add_note": "añadir Nota",
+    "enter_title": "Escriba las notas del título",
+    "enter_sub_title_notes": "Escriba sus notas de subtítulo",
+    "add": "añada"
   },
   "detail_note_screen": {
-    "yours_note": "Yours Note",
-    "enter_title": "Enter your title notes",
-    "enter_sub_title_notes": "Enter your sub title notes",
-    "update": "Update"
+    "yours_note": "Nota",
+    "enter_title": "Escriba las notas del título",
+    "enter_sub_title_notes": "Escriba sus notas de subtítulo",
+    "update": "Actualización"
   }
 }

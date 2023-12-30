@@ -45,7 +45,11 @@
     "app_settings": "App Settings",
     "set_theme": "Set Theme",
     "change_lan": "Change Language",
-    "out_acc": "Out Account"
+    "out_acc": "Out Account",
+    "choose_language": "Choose Language",
+    "russian": "Russian",
+    "spanish": "Spanish",
+    "english": "English"
   },
   "add_note_screen": {
     "add_note": "add Note",

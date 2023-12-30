@@ -19,7 +19,7 @@ const ProfileScreen = ({ navigation }: any) => {
     navigation.navigate("NameThemeSettings");
   };
   const ChangeLanguageTouchHandler = () => {
-
+    navigation.navigate("ChangeLanguage")
   };
   const OutAccountTouchHandler = () => {
     showAlertExitAccount();

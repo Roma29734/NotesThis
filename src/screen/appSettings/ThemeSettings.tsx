@@ -86,7 +86,6 @@ const ThemeSettingsScreen = ({ navigation }: any) => {
 const { height, width } = Dimensions.get("window");
 const styles= (color: UIColor) => StyleSheet.create({
 
-
   mainContainer: {
     alignSelf: "center",
     alignItems: "center",
