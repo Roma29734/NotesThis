@@ -5,7 +5,7 @@ import * as RNLocalize from 'react-native-localize';
 import en from './translations/en.json'; // Замените на свои файлы локализации
 import ru from './translations/ru.json';
 import es from './translations/es.json'
-import { getLanguageState } from "../../data/localData/MmkvStorageData";
+import { getLanguageState, saveLanguageState } from "../../data/localData/MmkvStorageData";
 
 const resources = {
   en: { translation: en },
@@ -16,7 +16,9 @@ const resources = {
 const getLocales = (): string => {
   const localState = getLanguageState()
   if(localState == null) {
-    return RNLocalize.getLocales()[0].languageCode
+    const localizeResult = RNLocalize.getLocales()[0].languageCode
+    saveLanguageState(localizeResult)
+    return localizeResult
   } else  {
     return localState
   }

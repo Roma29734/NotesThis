@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import MainTabNavScreen from "./src/screen/mainTabNav/MainTabNavScreen";
@@ -14,11 +14,14 @@ import { CreateAccountScreen } from "./src/screen/account/CreateAccount";
 import i18n from "./src/assets/translate/i18n";
 import { I18nextProvider } from "react-i18next";
 import { ChangeLanguageScreen } from "./src/screen/appSettings/ChangeLanguage";
+import { getLanguageState } from "./src/data/localData/MmkvStorageData";
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   const colorTheme = useThemeColor();
+
+
   return (
     <I18nextProvider i18n={i18n}>
       <View style={{ flex: 1, backgroundColor: colorTheme.BackgroundMain }}>
